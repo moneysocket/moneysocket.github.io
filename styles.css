@@ -141,6 +141,10 @@ img {
   margin-right: 20px;
 }
 
+.address-text {
+  font-size: 16px;
+}
+
 .anchor {
   display: block;
   position: relative;
@@ -158,6 +162,41 @@ footer {
   justify-content: flex-end;
   z-index: 2;
   color: white;
+}
+
+.overlay {
+  position: fixed;
+  z-index: 4;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.75);
+  transition: opacity 500ms;
+  visibility: hidden;
+  opacity: 0;
+}
+.overlay:target {
+  visibility: visible;
+  opacity: 1;
+}
+
+.modal {
+  margin: 35px auto;
+  padding: 15px;
+  background: #fff;
+  border-radius: 5px;
+  max-width: 400px;
+  position: relative;
+  z-index: 5;
+}
+
+.modal .close {
+  position: absolute;
+  top: 0px;
+  right: 20px;
+  transition: all 200ms;
+  font-size: 40px;
 }
 
 @media (max-width: 900px) {
@@ -217,4 +256,29 @@ footer {
   }
   #social-text {
     font-size: 0.7em;
+  }
+}
+
+@media (max-width: 480px) {
+  .modal {
+    margin: 25px auto;
+    padding: 5px;
+    max-width: 300px;
+  }
+  .modal .close {
+    top: -5px;
+    right: 5px;
+    font-size: auto;
+  }
+  .address-text {
+    font-size: 12px;
+  }
+  .btc-address {
+    width: 250px;
+  }
+  #convo {
+    font-size: 10px;
+    margin-right: 5px;
+    margin-left: 5px;
+  }
 }
