@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css?family=Poppins&display=swap");
+
 a {
   text-decoration: none;
   color: inherit;
@@ -75,6 +76,12 @@ img {
   display: flex;
   height: 40vh;
   padding-top: 10px;
+}
+
+.text-wrapper {
+  max-width: 800px;
+  text-align: inherit;
+  margin: auto;
 }
 
 #about {
