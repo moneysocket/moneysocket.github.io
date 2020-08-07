@@ -5,6 +5,10 @@ a {
   color: inherit;
 }
 
+p {
+    padding:5px;
+}
+
 body {
   font-family: Poppins;
 }
@@ -28,6 +32,7 @@ header {
 
 h1 {
   font-size: 2.6em;
+  padding: 10px;
 }
 
 img {
@@ -75,6 +80,7 @@ img {
   justify-content: center;
   display: flex;
   height: 40vh;
+  min-height: 350px;
   padding-top: 10px;
 }
 
@@ -90,13 +96,14 @@ img {
 }
 
 #uses {
-  background-image: linear-gradient(to bottom right, #53b979, #005a21);
+  background-image: linear-gradient(to bottom right, #53b979, #038834);
   margin-top: 10px;
 }
 
 #videos {
   background-color: white;
-  height: 10vh;
+  height: 6vh;
+  background-image: linear-gradient(to bottom right, #53b979, #038834);
 }
 
 #video {
