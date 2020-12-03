@@ -24820,7 +24820,7 @@ class ProviderStack {
 
     handleInvoiceRequest(msats, request_uuid) {
         if (this.handleinvoicerequest != null) {
-            this.handleinvoicerequest(mstats, request_uuid);
+            this.handleinvoicerequest(msats, request_uuid);
         }
     }
 
