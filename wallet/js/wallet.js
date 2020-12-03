@@ -21600,21 +21600,58 @@ utils.encode = function encode(arr, enc) {
 },{}],109:[function(require,module,exports){
 const moneysocket = {};
 
+// utility classes
 moneysocket.Uuid = require('./moneysocket/utl/uuid.js').Uuid;
+moneysocket.Timestamp = require('./moneysocket/utl/timestamp.js').Timestamp;
+moneysocket.BinUtl = require('./moneysocket/utl/bin.js').BinUtl;
+moneysocket.BigSize = require('./moneysocket/utl/bolt/bigsize.js').BigSize;
+moneysocket.UInt64 = require('./moneysocket/utl/uint64.js').UInt64;
+
+// stack classes
 moneysocket.ProviderStack = require(
     "./moneysocket/stack/provider.js").ProviderStack;
 moneysocket.ConsumerStack = require(
     "./moneysocket/stack/consumer.js").ConsumerStack;
 moneysocket.Wad = require("./moneysocket/wad/wad.js").Wad;
 
+// layer classes
+moneysocket.Layer = require("./moneysocket/layer/layer.js").Layer;
+moneysocket.OutgoingWebsocketLayer = require(
+    "./moneysocket/layer/outgoing_websocket.js").OutgoingWebsocketLayer;
+moneysocket.OutgoingRendezvousLayer = require(
+    "./moneysocket/layer/outgoing_rendezvous.js").OutgoingRendezvousLayer;
+moneysocket.ConsumerLayer = require(
+    "./moneysocket/layer/consumer.js").ConsumerLayer;
+moneysocket.ConsumerTransactLayer = require(
+    "./moneysocket/layer/consumer_transact.js").ConsumerTransactLayer;
+moneysocket.ProviderLayer = require(
+    "./moneysocket/layer/provider.js").ProviderLayer;
+moneysocket.ProviderTransactLayer = require(
+    "./moneysocket/layer/provider_transact.js").ProviderTransactLayer;
+
+// nexus classes
+moneysocket.Nexus = require("./moneysocket/nexus/nexus.js").Nexus;
+
+// beacon classes
 moneysocket.MoneysocketBeacon = require(
     './moneysocket/beacon/beacon.js').MoneysocketBeacon;
+moneysocket.SharedSeed = require(
+    './moneysocket/beacon/shared_seed.js').SharedSeed;
 moneysocket.WebsocketLocation = require(
     './moneysocket/beacon/location/websocket.js').WebsocketLocation;
 
+// message classes
+moneysocket.MoneysocketRequest = require(
+    './moneysocket/message/request/request.js').MoneysocketRequest;
+moneysocket.REQUEST_SUBCLASSES = require(
+    './moneysocket/message/request/request.js').REQUEST_SUBCLASSES;
+moneysocket.MoneysocketNotification = require('./moneysocket/message/notification/notification.js').MoneysocketNotification;
+moneysocket.NOTIFICATION_SUBCLASSES = require('./moneysocket/message/notification/notification.js').NOTIFICATION_SUBCLASSES;
+
+
 module.exports = moneysocket;
 
-},{"./moneysocket/beacon/beacon.js":110,"./moneysocket/beacon/location/websocket.js":114,"./moneysocket/stack/consumer.js":152,"./moneysocket/stack/provider.js":153,"./moneysocket/utl/uuid.js":161,"./moneysocket/wad/wad.js":165}],110:[function(require,module,exports){
+},{"./moneysocket/beacon/beacon.js":110,"./moneysocket/beacon/location/websocket.js":114,"./moneysocket/beacon/shared_seed.js":115,"./moneysocket/layer/consumer.js":116,"./moneysocket/layer/consumer_transact.js":117,"./moneysocket/layer/layer.js":118,"./moneysocket/layer/outgoing_rendezvous.js":119,"./moneysocket/layer/outgoing_websocket.js":120,"./moneysocket/layer/provider.js":121,"./moneysocket/layer/provider_transact.js":122,"./moneysocket/message/notification/notification.js":127,"./moneysocket/message/request/request.js":143,"./moneysocket/nexus/nexus.js":146,"./moneysocket/stack/consumer.js":152,"./moneysocket/stack/provider.js":153,"./moneysocket/utl/bin.js":155,"./moneysocket/utl/bolt/bigsize.js":156,"./moneysocket/utl/timestamp.js":159,"./moneysocket/utl/uint64.js":160,"./moneysocket/utl/uuid.js":161,"./moneysocket/wad/wad.js":165}],110:[function(require,module,exports){
 // Copyright (c) 2020 Jarret Dyrbye
 // Distributed under the MIT software license, see the accompanying
 // file LICENSE or http://www.opensource.org/licenses/mit-license.php
@@ -22615,7 +22652,7 @@ class ProviderTransactLayer extends Layer {
 
     setupProviderTransactNexus(below_nexus) {
         var n = new ProviderTransactNexus(below_nexus, this);
-        n.handleinvoicerequest = (function(nexus, bolt11, request_uuid) {
+        n.handleinvoicerequest = (function(nexus, msats, request_uuid) {
             this.handleInvoiceRequest(nexus, msats, request_uuid);
         }).bind(this);
         n.handlepayrequest = (function(nexus, bolt11, request_uuid) {
