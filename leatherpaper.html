@@ -24,6 +24,9 @@
 
 <h1> Stablewallet Leatherpaper </h1>
 
+<p>© 2020 Jarret Dyrbye (last updated 2020-12-06)</p>
+
+
 <h2> Problem </h2>
 
 <p>
@@ -31,19 +34,19 @@ The fatal problem with "stablecoins" is that third parties are security holes an
 </p>
 
 <p>
-If Alice has a bank account with $100 USD in and chooses to issue a representative set of $1 stablecoins to be traded in the economy with her as the custodian.
+If Alice has a bank account with $1000 USD of her own money in and chooses to issue a representative set of $1 stablecoins to be traded in the economy with her as the custodian.
 </p>
 
 <p>
-Bob obtains one of these tokens via economic activity. While holding this token, Alice succumbs to her darker impulses and embezzles the $100 USD in the account to buy herself something fancy without disclosing this to anyone.
+Bob obtains $10 USD of tokens via economic activity. While Bom is holding to them, Alice succumbs to her darker impulses and embezzles the $1000 USD in the account to buy herself something fancy without disclosing this activity to anyone.
 </p>
 
 <p>
-Bob sends his token to Carol as part of an economic trade. This transaction clears and Carol believes she is has taken possession of $1 USD. However, in actuality Carol is a victim of Alice's embezzlement, since she is unable to redeem the $1 USD from Alice.
+Bob sends his token to Carol as part of an economic trade. This transaction clears and Carol believes she is has taken possession of $10 USD. However, in actuality Carol is a victim of Alice's embezzlement, since she is unable to redeem the $10 USD from Alice.
 </p>
 
 <p>
-Furthermore, if Bob becomes aware of the embezzlement, there is an incentive for corruption. Bob pretends he has no knowledge of this fact, and seeks out a Carol to transact the money away to. Similarly, Alice could knowingly orchestrate these events and deliberately act to manufacture victims such as Carol to create private profit for herself.
+Furthermore, if Bob becomes aware of the embezzlement, there is an incentive for furthering the corruption to pass off loss on someone else. Bob pretends he has no knowledge of the embezzlement and seeks out someone like Carol to transact the money away in exchange for full value. Similarly, Alice could knowingly orchestrate these events and deliberately act to manufacture victims such as Carol to create private profit for herself.
 </p>
 
 <h2> Solution </h2>
@@ -57,23 +60,23 @@ In addition to playing host to the backing store of value, Alice runs software t
 </p>
 
 <p>
-Bob's wallet maintains a real-time connection back to Alice's software. This informs Bob's wallet that he has $1 USD of stable value, but also the corresponding number of satoshis available for Lightning Network transaction according to the BTCUSD exchange rate. As the exchange rate fluctuates, the connection is updated with the new number of satoshis corresponding to Bob's $1 USD.
+Bob's wallet maintains a real-time connection back to Alice's software. This informs Bob's wallet that he has $10 USD of stable value, but also the corresponding number of satoshis available for Lightning Network transaction according to the BTCUSD exchange rate. As the exchange rate fluctuates, the connection is updated with the new number of satoshis corresponding to Bob's $10 USD.
 </p>
 
 <p>
-Carol wishes to transact with Bob to obtain the $1 USD for goods or services in return, however she is obtaining stabilization services from a different provider, Dave, who also runs a Lightning Network node and provides a connection for Carol's wallet.
+Carol wishes to transact with Bob to obtain the $10 USD for goods or services in return, however she is obtaining stabilization services from a different provider, Dave, who also runs a Lightning Network node and provides a connection for Carol's wallet.
 </p>
 
 <p>
-Bob and Carol's wallet decide on the exact count of satoshis to exchange to represent the $1 USD. Dave generates a bolt11 from his node on Carol's behalf and it is forwarded via Bob to Alice as a request for Alice's node to pay it.
+Bob and Carol's wallet decide on the exact count of satoshis to exchange to represent the $10 USD. Dave generates a Bolt11 from his node on Carol's behalf and it is forwarded via Bob to Alice as a request for Alice's node to pay it.
 </p>
 
 <p>
-If Alice and her Lightning Network node happen to be insolvent doe to Alice's corrupt behavior, the invoice will not settle and Carol + Dave will not receive the satoshis corresponding to the $1 USD. This will be known instantly. This will not create a victim out of Carol and incentives will not align that way (as was the case with stablecoins).
+If Alice and her Lightning Network node happen to be insolvent doe to Alice's corrupt behavior, the invoice will not settle and Carol and Dave will not receive the satoshis corresponding to the $10 USD. This will be known instantly. This will not create a victim out of Carol and incentives will not align that way as is the case with stablecoins.
 </p>
 
 <p>
-On this failure to settle the transaction, the dispute over the $1 USD value owed is kept between Alice and Bob. Furthermore, there are existing traditional legal frameworks in the form of standard accounting practices and deposit assurance for fiat account balances to help protect Bob from the actions of Alice.
+On this failure to settle the transaction, the dispute over the $10 USD value owed is kept between Alice and Bob. Furthermore, there are existing traditional legal frameworks in the form of standard accounting practices and deposit assurance for fiat account balances to help protect Bob from the potential corrupt actions of Alice.
 </p>
 
 
