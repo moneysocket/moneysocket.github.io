@@ -34840,7 +34840,7 @@ function config (name) {
 }).call(this)}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 
 },{}],332:[function(require,module,exports){
-// Copyright (c) 2021 Jarret Dyrbye
+// Copyright (c) 2021 Moneysocket Developers
 // Distributed under the MIT software license, see the accompanying
 // file LICENSE or http://www.opensource.org/licenses/mit-license.php
 
@@ -34879,7 +34879,7 @@ window.addEventListener("unload", cleanUp);
 
 
 },{"./controller/controller.js":333,"./model/model.js":338,"./view/view.js":362}],333:[function(require,module,exports){
-// Copyright (c) 2021 Jarret Dyrbye
+// Copyright (c) 2021 Moneysocket Developers
 // Distributed under the MIT software license, see the accompanying
 // file LICENSE or http://www.opensource.org/licenses/mit-license.php
 
@@ -35080,7 +35080,7 @@ class CostanzaController {
 exports.CostanzaController = CostanzaController;
 
 },{"./scan-interpret.js":334}],334:[function(require,module,exports){
-// Copyright (c) 2021 Jarret Dyrbye
+// Copyright (c) 2021 Moneysocket Developers
 // Distributed under the MIT software license, see the accompanying
 // file LICENSE or http://www.opensource.org/licenses/mit-license.php
 
@@ -35172,7 +35172,7 @@ class ScanInterpret {
 exports.ScanInterpret = ScanInterpret;
 
 },{"../model/model.js":338,"bolt11":49,"moneysocket":363}],335:[function(require,module,exports){
-// Copyright (c) 2021 Jarret Dyrbye
+// Copyright (c) 2021 Moneysocket Developers
 // Distributed under the MIT software license, see the accompanying
 // file LICENSE or http://www.opensource.org/licenses/mit-license.php
 
@@ -35258,7 +35258,7 @@ class Balance {
 exports.Balance = Balance;
 
 },{"moneysocket":363}],336:[function(require,module,exports){
-// Copyright (c) 2021 Jarret Dyrbye
+// Copyright (c) 2021 Moneysocket Developers
 // Distributed under the MIT software license, see the accompanying
 // file LICENSE or http://www.opensource.org/licenses/mit-license.php
 
@@ -35342,7 +35342,7 @@ class ManualReceiveReceipt {
 exports.ManualReceiveReceipt = ManualReceiveReceipt;
 
 },{"moneysocket":363}],337:[function(require,module,exports){
-// Copyright (c) 2021 Jarret Dyrbye
+// Copyright (c) 2021 Moneysocket Developers
 // Distributed under the MIT software license, see the accompanying
 // file LICENSE or http://www.opensource.org/licenses/mit-license.php
 
@@ -35415,7 +35415,7 @@ class ManualSendReceipt {
 exports.ManualSendReceipt = ManualSendReceipt;
 
 },{"moneysocket":363}],338:[function(require,module,exports){
-// Copyright (c) 2021 Jarret Dyrbye
+// Copyright (c) 2021 Moneysocket Developers
 // Distributed under the MIT software license, see the accompanying
 // file LICENSE or http://www.opensource.org/licenses/mit-license.php
 
@@ -36063,7 +36063,7 @@ exports.CostanzaModel = CostanzaModel;
 exports.CONNECT_STATE = CONNECT_STATE;
 
 },{"./balance.js":335,"./persist.js":339,"./receipts.js":340,"./transact.js":342,"moneysocket":363}],339:[function(require,module,exports){
-// Copyright (c) 2021 Jarret Dyrbye
+// Copyright (c) 2021 Moneysocket Developers
 // Distributed under the MIT software license, see the accompanying
 // file LICENSE or http://www.opensource.org/licenses/mit-license.php
 
@@ -36295,7 +36295,7 @@ exports.PERSIST_PROFILE = PERSIST_PROFILE;
 exports.Persist = Persist;
 
 },{"moneysocket":363}],340:[function(require,module,exports){
-// Copyright (c) 2021 Jarret Dyrbye
+// Copyright (c) 2021 Moneysocket Developers
 // Distributed under the MIT software license, see the accompanying
 // file LICENSE or http://www.opensource.org/licenses/mit-license.php
 
@@ -36559,7 +36559,7 @@ class Receipts {
 exports.Receipts = Receipts;
 
 },{"./manual-receive-receipt.js":336,"./manual-send-receipt.js":337,"./socket-session-receipt.js":341,"bolt11":49,"moneysocket":363}],341:[function(require,module,exports){
-// Copyright (c) 2021 Jarret Dyrbye
+// Copyright (c) 2021 Moneysocket Developers
 // Distributed under the MIT software license, see the accompanying
 // file LICENSE or http://www.opensource.org/licenses/mit-license.php
 
@@ -36691,7 +36691,7 @@ class SocketSessionReceipt {
 exports.SocketSessionReceipt = SocketSessionReceipt;
 
 },{"moneysocket":363}],342:[function(require,module,exports){
-// Copyright (c) 2021 Jarret Dyrbye
+// Copyright (c) 2021 Moneysocket Developers
 // Distributed under the MIT software license, see the accompanying
 // file LICENSE or http://www.opensource.org/licenses/mit-license.php
 
@@ -37053,7 +37053,7 @@ class Transact {
 exports.Transact = Transact;
 
 },{"bolt11":49,"moneysocket":363}],343:[function(require,module,exports){
-// Copyright (c) 2021 Jarret Dyrbye
+// Copyright (c) 2021 Moneysocket Developers
 // Distributed under the MIT software license, see the accompanying
 // file LICENSE or http://www.opensource.org/licenses/mit-license.php
 
@@ -37159,7 +37159,7 @@ class DomUtl {
 exports.DomUtl = DomUtl;
 
 },{}],344:[function(require,module,exports){
-// Copyright (c) 2021 Jarret Dyrbye
+// Copyright (c) 2021 Moneysocket Developers
 // Distributed under the MIT software license, see the accompanying
 // file LICENSE or http://www.opensource.org/licenses/mit-license.php
 
@@ -37262,92 +37262,7 @@ class IconUtl {
 exports.IconUtl = IconUtl;
 
 },{"./dom.js":343}],345:[function(require,module,exports){
-var D = require('../../utl/dom.js').DomUtl;
-const I = require('../../utl/icon.js').IconUtl;
-
-class Screen {
-    constructor(app_div, model) {
-        this.app_div = app_div;
-        this.model = model;
-    }
-
-    ///////////////////////////////////////////////////////////////////////////
-    // Buttons
-    ///////////////////////////////////////////////////////////////////////////
-    
-    drawButton(div, icon_func, button_text, click_func, button_type) {
-        var b = D.button(div, click_func, button_type);
-        var flex = D.emptyDiv(b, "flex items-center justify-around");
-        var icon_span = D.emptySpan(flex, "px-2");
-        var qr = icon_func(icon_span);
-        var text = D.textSpan(flex, button_text);
-    }
-
-    drawButtonPlain(div, button_text, click_func, button_type) {
-        var b = D.button(div, click_func, button_type);
-        var flex = D.emptyDiv(b, "flex items-center justify-around");
-        var text = D.textSpan(flex, button_text);
-    }
-
-    drawButtonPercent(div, pct, click_func, button_type) {
-        var b = D.button(div, click_func, button_type);
-        var flex = D.emptyDiv(b, "flex items-center justify-around");
-        D.textSpan(flex, pct.toString() + "%");
-    }
-
-    drawBackButton(div, back_func) {
-        this.drawButton(div, I.backarrow2x, "Back", back_func, "main-button");
-    }
-
-    ///////////////////////////////////////////////////////////////////////////
-    // Titles, Headings and Text
-    ///////////////////////////////////////////////////////////////////////////
-
-    drawTitle(div) {
-        var flex = D.emptyDiv(div, "flex items-center justify-around");
-        D.textParagraph(flex, this.title_string, "page-title");
-    }
-
-    ///////////////////////////////////////////////////////////////////////////
-    // Panels
-    ///////////////////////////////////////////////////////////////////////////
-
-    drawTitlePanel(div) {
-        var flex = D.emptyDiv(div,
-                              "flex flex-wrap section-background");
-        var button_flex = D.emptyDiv(flex, "flex-initial px-2");
-        var title_flex = D.emptyDiv(flex, "flex-initial px-5 py-2");
-        this.drawBackButton(button_flex, this.onbackclick);
-        this.drawTitle(title_flex);
-    }
-
-    drawMenuPanelEntry(div, click_func, icon_func, item_text) {
-        var d = D.emptyDiv(div,
-                           "bg-gray-800 hover:bg-gray-900 text-gray-300 py-2");
-        d.onclick = (function() {
-            click_func()
-        }).bind(this);
-        var flex = D.emptyDiv(d, "flex items-center justify-start");
-        var icon_span = D.emptySpan(flex, "px-2 font-bold");
-        icon_func(icon_span);
-        D.textSpan(flex, item_text, "flex-grow text-sm");
-    }
-
-    ///////////////////////////////////////////////////////////////////////////
-    // Screens
-    ///////////////////////////////////////////////////////////////////////////
-
-    screenDiv(div_style) {
-        var flex = D.emptyDiv(this.app_div, div_style);
-        return flex;
-    }
-
-}
-
-module.exports = Screen;
-
-},{"../../utl/dom.js":343,"../../utl/icon.js":344}],346:[function(require,module,exports){
-// Copyright (c) 2021 Jarret Dyrbye
+// Copyright (c) 2021 Moneysocket Developers
 // Distributed under the MIT software license, see the accompanying
 // file LICENSE or http://www.opensource.org/licenses/mit-license.php
 
@@ -37355,7 +37270,7 @@ module.exports = Screen;
 const D = require('../../utl/dom.js').DomUtl;
 const I = require('../../utl/icon.js').IconUtl;
 
-var Screen = require('./Screen');
+const Screen = require('./screen.js').Screen;
 
 
 class AboutScreen extends Screen {
@@ -37406,8 +37321,8 @@ class AboutScreen extends Screen {
 
 exports.AboutScreen = AboutScreen;
 
-},{"../../utl/dom.js":343,"../../utl/icon.js":344,"./Screen":345}],347:[function(require,module,exports){
-// Copyright (c) 2021 Jarret Dyrbye
+},{"../../utl/dom.js":343,"../../utl/icon.js":344,"./screen.js":360}],346:[function(require,module,exports){
+// Copyright (c) 2021 Moneysocket Developers
 // Distributed under the MIT software license, see the accompanying
 // file LICENSE or http://www.opensource.org/licenses/mit-license.php
 
@@ -37582,19 +37497,19 @@ class ConnectProgress {
 
 exports.ConnectProgress = ConnectProgress;
 
-},{"../../utl/dom.js":343}],348:[function(require,module,exports){
-// Copyright (c) 2021 Jarret Dyrbye
+},{"../../utl/dom.js":343}],347:[function(require,module,exports){
+// Copyright (c) 2021 Moneysocket Developers
 // Distributed under the MIT software license, see the accompanying
 // file LICENSE or http://www.opensource.org/licenses/mit-license.php
 
-var D = require('../../utl/dom.js').DomUtl;
-var I = require('../../utl/icon.js').IconUtl;
+const D = require('../../utl/dom.js').DomUtl;
+const I = require('../../utl/icon.js').IconUtl;
 
-var Screen = require('./Screen');
+const Screen = require('./screen.js').Screen;
 
 
 class ConnectScreen extends Screen {
-    constructor(app_div, model) { 
+    constructor(app_div, model) {
         super(app_div, model) ;
 
         this.onbbackclick = null;
@@ -37783,15 +37698,15 @@ class ConnectAppScreen extends ConnectScreen {
 exports.ConnectWalletScreen = ConnectWalletScreen;
 exports.ConnectAppScreen = ConnectAppScreen;
 
-},{"../../utl/dom.js":343,"../../utl/icon.js":344,"./Screen":345}],349:[function(require,module,exports){
-// Copyright (c) 2021 Jarret Dyrbye
+},{"../../utl/dom.js":343,"../../utl/icon.js":344,"./screen.js":360}],348:[function(require,module,exports){
+// Copyright (c) 2021 Moneysocket Developers
 // Distributed under the MIT software license, see the accompanying
 // file LICENSE or http://www.opensource.org/licenses/mit-license.php
 
 const D = require('../../utl/dom.js').DomUtl;
 const I = require('../../utl/icon.js').IconUtl;
 
-var Screen = require('./Screen');
+const Screen = require('./screen.js').Screen;
 
 const Wad = require("moneysocket").Wad;
 
@@ -38094,8 +38009,8 @@ class ConnectedAppScreen extends Screen {
 
 exports.ConnectedAppScreen = ConnectedAppScreen;
 
-},{"../../utl/dom.js":343,"../../utl/icon.js":344,"./Screen":345,"moneysocket":363}],350:[function(require,module,exports){
-// Copyright (c) 2021 Jarret Dyrbye
+},{"../../utl/dom.js":343,"../../utl/icon.js":344,"./screen.js":360,"moneysocket":363}],349:[function(require,module,exports){
+// Copyright (c) 2021 Moneysocket Developers
 // Distributed under the MIT software license, see the accompanying
 // file LICENSE or http://www.opensource.org/licenses/mit-license.php
 
@@ -38103,7 +38018,7 @@ exports.ConnectedAppScreen = ConnectedAppScreen;
 const D = require('../../utl/dom.js').DomUtl;
 const I = require('../../utl/icon.js').IconUtl;
 
-var Screen = require('./Screen');
+const Screen = require('./screen.js').Screen;
 
 
 class ConnectedWalletScreen extends Screen {
@@ -38252,8 +38167,8 @@ class ConnectedWalletScreen extends Screen {
 
 exports.ConnectedWalletScreen = ConnectedWalletScreen;
 
-},{"../../utl/dom.js":343,"../../utl/icon.js":344,"./Screen":345}],351:[function(require,module,exports){
-// Copyright (c) 2021 Jarret Dyrbye
+},{"../../utl/dom.js":343,"../../utl/icon.js":344,"./screen.js":360}],350:[function(require,module,exports){
+// Copyright (c) 2021 Moneysocket Developers
 // Distributed under the MIT software license, see the accompanying
 // file LICENSE or http://www.opensource.org/licenses/mit-license.php
 
@@ -38263,7 +38178,7 @@ const Kjua = require('kjua');
 const D = require('../../utl/dom.js').DomUtl;
 const I = require('../../utl/icon.js').IconUtl;
 
-var Screen = require('./Screen');
+const Screen = require('./screen.js').Screen;
 
 const ConnectProgress = require("./connect-progress.js").ConnectProgress;
 const Copy = require('clipboard-copy');
@@ -38287,13 +38202,15 @@ class ConnectingScreen extends Screen {
     ///////////////////////////////////////////////////////////////////////////
 
     drawDisconnectButton(div, disconnect_func) {
-        this.drawButton(div, I.plug2x, "Disconnect", disconnect_func, "main-button");
+        this.drawButton(div, I.plug2x, "Disconnect", disconnect_func,
+                        "main-button");
     }
 
     drawCopyBeaconButton(div, copy_func) {
-        this.drawButton(div, I.plug2x, "Copy", copy_func, "main-button");
+        var b = this.drawButton(div, I.plug2x, "Copy", copy_func,
+                                "main-button");
+        this.copy_span = b.inner_text_span;
     }
-
 
     doDisconnect() {
         if (this.ondisconnectclick != null) {
@@ -38399,16 +38316,16 @@ class ConnectingAppScreen extends ConnectingScreen {
 exports.ConnectingAppScreen = ConnectingAppScreen;
 exports.ConnectingWalletScreen = ConnectingWalletScreen;
 
-},{"../../utl/dom.js":343,"../../utl/icon.js":344,"./Screen":345,"./connect-progress.js":347,"clipboard-copy":87,"kjua":158}],352:[function(require,module,exports){
-// Copyright (c) 2021 Jarret Dyrbye
+},{"../../utl/dom.js":343,"../../utl/icon.js":344,"./connect-progress.js":346,"./screen.js":360,"clipboard-copy":87,"kjua":158}],351:[function(require,module,exports){
+// Copyright (c) 2021 Moneysocket Developers
 // Distributed under the MIT software license, see the accompanying
 // file LICENSE or http://www.opensource.org/licenses/mit-license.php
 
-var D = require('../../utl/dom.js').DomUtl;
-var I = require('../../utl/icon.js').IconUtl;
-var Wad = require("moneysocket").Wad;
+const D = require('../../utl/dom.js').DomUtl;
+const I = require('../../utl/icon.js').IconUtl;
+const Wad = require("moneysocket").Wad;
 
-var Screen = require('./Screen');
+const Screen = require('./screen.js').Screen;
 
 const Bolt11 = require("moneysocket").Bolt11;
 const b11 = require("bolt11");
@@ -38416,7 +38333,6 @@ const b11 = require("bolt11");
 class DrillLevelOneScreen extends Screen {
     constructor(app_div) {
         super(app_div);
-        
         this.onbackclick = null;
         this.onentryclick = null;
         this.receipt = null;
@@ -38581,16 +38497,16 @@ class DrillLevelOneScreen extends Screen {
 
 exports.DrillLevelOneScreen = DrillLevelOneScreen;
 
-},{"../../utl/dom.js":343,"../../utl/icon.js":344,"./Screen":345,"bolt11":49,"moneysocket":363}],353:[function(require,module,exports){
-// Copyright (c) 2021 Jarret Dyrbye
+},{"../../utl/dom.js":343,"../../utl/icon.js":344,"./screen.js":360,"bolt11":49,"moneysocket":363}],352:[function(require,module,exports){
+// Copyright (c) 2021 Moneysocket Developers
 // Distributed under the MIT software license, see the accompanying
 // file LICENSE or http://www.opensource.org/licenses/mit-license.php
 
-var D = require('../../utl/dom.js').DomUtl;
-var I = require('../../utl/icon.js').IconUtl;
-var Wad = require("moneysocket").Wad;
+const D = require('../../utl/dom.js').DomUtl;
+const I = require('../../utl/icon.js').IconUtl;
+const Wad = require("moneysocket").Wad;
 
-var Screen = require('./Screen');
+const Screen = require('./screen.js').Screen;
 
 const Bolt11 = require("moneysocket").Bolt11;
 const b11 = require("bolt11");
@@ -38712,15 +38628,15 @@ class DrillLevelTwoScreen extends Screen {
 
 exports.DrillLevelTwoScreen = DrillLevelTwoScreen;
 
-},{"../../utl/dom.js":343,"../../utl/icon.js":344,"./Screen":345,"bolt11":49,"moneysocket":363}],354:[function(require,module,exports){
-// Copyright (c) 2021 Jarret Dyrbye
+},{"../../utl/dom.js":343,"../../utl/icon.js":344,"./screen.js":360,"bolt11":49,"moneysocket":363}],353:[function(require,module,exports){
+// Copyright (c) 2021 Moneysocket Developers
 // Distributed under the MIT software license, see the accompanying
 // file LICENSE or http://www.opensource.org/licenses/mit-license.php
 
-var D = require('../../utl/dom.js').DomUtl;
-var I = require('../../utl/icon.js').IconUtl;
+const D = require('../../utl/dom.js').DomUtl;
+const I = require('../../utl/icon.js').IconUtl;
 
-var Screen = require('./Screen');
+const Screen = require('./screen.js').Screen;
 
 
 class ErrorScreen extends Screen {
@@ -38762,22 +38678,22 @@ class ErrorScreen extends Screen {
 
 exports.ErrorScreen = ErrorScreen;
 
-},{"../../utl/dom.js":343,"../../utl/icon.js":344,"./Screen":345}],355:[function(require,module,exports){
-// Copyright (c) 2021 Jarret Dyrbye
+},{"../../utl/dom.js":343,"../../utl/icon.js":344,"./screen.js":360}],354:[function(require,module,exports){
+// Copyright (c) 2021 Moneysocket Developers
 // Distributed under the MIT software license, see the accompanying
 // file LICENSE or http://www.opensource.org/licenses/mit-license.php
 
-var D = require('../../utl/dom.js').DomUtl;
-var I = require('../../utl/icon.js').IconUtl;
-var Wad = require("moneysocket").Wad;
+const D = require('../../utl/dom.js').DomUtl;
+const I = require('../../utl/icon.js').IconUtl;
+const Wad = require("moneysocket").Wad;
 
-var SocketSessionReceipt = require(
+const SocketSessionReceipt = require(
     '../../model/socket-session-receipt.js').SocketSessionReceipt;
-var ManualReceiveReceipt = require(
+const ManualReceiveReceipt = require(
     '../../model/manual-receive-receipt.js').ManualReceiveReceipt;
-var ManualSendReceipt = require(
+const ManualSendReceipt = require(
     '../../model/manual-send-receipt.js').ManualSendReceipt;
-var Screen = require('./Screen');
+const Screen = require('./screen.js').Screen;
 
 const CONNECT_STATE = require('../../model/model.js').CONNECT_STATE;
 
@@ -39082,8 +38998,8 @@ class MainScreen extends Screen {
 
 exports.MainScreen = MainScreen;
 
-},{"../../model/manual-receive-receipt.js":336,"../../model/manual-send-receipt.js":337,"../../model/model.js":338,"../../model/socket-session-receipt.js":341,"../../utl/dom.js":343,"../../utl/icon.js":344,"./Screen":345,"moneysocket":363}],356:[function(require,module,exports){
-// Copyright (c) 2021 Jarret Dyrbye
+},{"../../model/manual-receive-receipt.js":336,"../../model/manual-send-receipt.js":337,"../../model/model.js":338,"../../model/socket-session-receipt.js":341,"../../utl/dom.js":343,"../../utl/icon.js":344,"./screen.js":360,"moneysocket":363}],355:[function(require,module,exports){
+// Copyright (c) 2021 Moneysocket Developers
 // Distributed under the MIT software license, see the accompanying
 // file LICENSE or http://www.opensource.org/licenses/mit-license.php
 
@@ -39093,7 +39009,7 @@ const D = require('../../utl/dom.js').DomUtl;
 const I = require('../../utl/icon.js').IconUtl;
 const Copy = require('clipboard-copy');
 
-var Screen = require('./Screen');
+const Screen = require('./screen.js').Screen;
 
 
 class ManualProvideInvoiceScreen extends Screen {
@@ -39173,15 +39089,15 @@ class ManualProvideInvoiceScreen extends Screen {
 
 exports.ManualProvideInvoiceScreen = ManualProvideInvoiceScreen;
 
-},{"../../utl/dom.js":343,"../../utl/icon.js":344,"./Screen":345,"clipboard-copy":87,"kjua":158}],357:[function(require,module,exports){
-// Copyright (c) 2021 Jarret Dyrbye
+},{"../../utl/dom.js":343,"../../utl/icon.js":344,"./screen.js":360,"clipboard-copy":87,"kjua":158}],356:[function(require,module,exports){
+// Copyright (c) 2021 Moneysocket Developers
 // Distributed under the MIT software license, see the accompanying
 // file LICENSE or http://www.opensource.org/licenses/mit-license.php
 
 const D = require('../../utl/dom.js').DomUtl;
 const I = require('../../utl/icon.js').IconUtl;
 
-var Screen = require('./Screen');
+const Screen = require('./screen.js').Screen;
 
 const MSATS_PER_SAT = 1000.0;
 const SATS_PER_BTC = 100000000.0;
@@ -39325,8 +39241,8 @@ class ManualReceiveScreen extends Screen {
 
 exports.ManualReceiveScreen = ManualReceiveScreen;
 
-},{"../../utl/dom.js":343,"../../utl/icon.js":344,"./Screen":345}],358:[function(require,module,exports){
-// Copyright (c) 2021 Jarret Dyrbye
+},{"../../utl/dom.js":343,"../../utl/icon.js":344,"./screen.js":360}],357:[function(require,module,exports){
+// Copyright (c) 2021 Moneysocket Developers
 // Distributed under the MIT software license, see the accompanying
 // file LICENSE or http://www.opensource.org/licenses/mit-license.php
 
@@ -39336,7 +39252,7 @@ const Wad = require("moneysocket").Wad;
 const D = require('../../utl/dom.js').DomUtl;
 const I = require('../../utl/icon.js').IconUtl;
 
-var Screen = require('./Screen');
+const Screen = require('./screen.js').Screen;
 
 const MSATS_PER_SAT = 1000.0;
 const SATS_PER_BTC = 100000000.0;
@@ -39504,21 +39420,21 @@ class ManualSendScreen extends Screen {
 
 exports.ManualSendScreen = ManualSendScreen;
 
-},{"../../utl/dom.js":343,"../../utl/icon.js":344,"./Screen":345,"bolt11":49,"moneysocket":363}],359:[function(require,module,exports){
-// Copyright (c) 2021 Jarret Dyrbye
+},{"../../utl/dom.js":343,"../../utl/icon.js":344,"./screen.js":360,"bolt11":49,"moneysocket":363}],358:[function(require,module,exports){
+// Copyright (c) 2021 Moneysocket Developers
 // Distributed under the MIT software license, see the accompanying
 // file LICENSE or http://www.opensource.org/licenses/mit-license.php
 
 var D = require('../../utl/dom.js').DomUtl;
 var I = require('../../utl/icon.js').IconUtl;
 
-var Screen = require('./Screen');
+const Screen = require('./screen.js').Screen;
 
 
 class MenuScreen extends Screen {
     constructor(app_div) {
         super(app_div);
-        
+
         this.onbackclick = null;
 
         this.onwalletproviderclick = null;
@@ -39559,17 +39475,17 @@ class MenuScreen extends Screen {
 
 exports.MenuScreen = MenuScreen;
 
-},{"../../utl/dom.js":343,"../../utl/icon.js":344,"./Screen":345}],360:[function(require,module,exports){
-// Copyright (c) 2021 Jarret Dyrbye
+},{"../../utl/dom.js":343,"../../utl/icon.js":344,"./screen.js":360}],359:[function(require,module,exports){
+// Copyright (c) 2021 Moneysocket Developers
 // Distributed under the MIT software license, see the accompanying
 // file LICENSE or http://www.opensource.org/licenses/mit-license.php
 
-var D = require('../../utl/dom.js').DomUtl;
-var I = require('../../utl/icon.js').IconUtl;
+const D = require('../../utl/dom.js').DomUtl;
+const I = require('../../utl/icon.js').IconUtl;
 
-var Screen = require('./Screen');
+const Screen = require('./screen.js').Screen;
 
-var QrScanner = require('qr-scanner');
+const QrScanner = require('qr-scanner');
 QrScanner.WORKER_PATH = "js/qr-scanner-worker.min.js";
 
 class ScanScreen extends Screen {
@@ -39692,8 +39608,103 @@ class ScanScreen extends Screen {
 
 exports.ScanScreen = ScanScreen;
 
-},{"../../utl/dom.js":343,"../../utl/icon.js":344,"./Screen":345,"qr-scanner":290}],361:[function(require,module,exports){
-// Copyright (c) 2021 Jarret Dyrbye
+},{"../../utl/dom.js":343,"../../utl/icon.js":344,"./screen.js":360,"qr-scanner":290}],360:[function(require,module,exports){
+// Copyright (c) 2021 Moneysocket Developers
+// Distributed under the MIT software license, see the accompanying
+// file LICENSE or http://www.opensource.org/licenses/mit-license.php
+const D = require('../../utl/dom.js').DomUtl;
+const I = require('../../utl/icon.js').IconUtl;
+
+class Screen {
+    constructor(app_div, model) {
+        this.app_div = app_div;
+        this.model = model;
+    }
+
+    ///////////////////////////////////////////////////////////////////////////
+    // Buttons
+    ///////////////////////////////////////////////////////////////////////////
+
+    drawButton(div, icon_func, button_text, click_func, button_type) {
+        var b = D.button(div, click_func, button_type);
+        var flex = D.emptyDiv(b, "flex items-center justify-around");
+        var icon_span = D.emptySpan(flex, "px-2");
+        var qr = icon_func(icon_span);
+        var text = D.textSpan(flex, button_text);
+        b.inner_text_span = text;
+        return b;
+    }
+
+    drawButtonPlain(div, button_text, click_func, button_type) {
+        var b = D.button(div, click_func, button_type);
+        var flex = D.emptyDiv(b, "flex items-center justify-around");
+        var text = D.textSpan(flex, button_text);
+        b.inner_text_span = text;
+        return b;
+    }
+
+    drawButtonPercent(div, pct, click_func, button_type) {
+        var b = D.button(div, click_func, button_type);
+        var flex = D.emptyDiv(b, "flex items-center justify-around");
+        D.textSpan(flex, pct.toString() + "%");
+        b.inner_text_span = text;
+        return b;
+    }
+
+    drawBackButton(div, back_func) {
+        return this.drawButton(div, I.backarrow2x, "Back", back_func,
+                               "main-button");
+    }
+
+    ///////////////////////////////////////////////////////////////////////////
+    // Titles, Headings and Text
+    ///////////////////////////////////////////////////////////////////////////
+
+    drawTitle(div) {
+        var flex = D.emptyDiv(div, "flex items-center justify-around");
+        D.textParagraph(flex, this.title_string, "page-title");
+    }
+
+    ///////////////////////////////////////////////////////////////////////////
+    // Panels
+    ///////////////////////////////////////////////////////////////////////////
+
+    drawTitlePanel(div) {
+        var flex = D.emptyDiv(div,
+                              "flex flex-wrap section-background");
+        var button_flex = D.emptyDiv(flex, "flex-initial px-2");
+        var title_flex = D.emptyDiv(flex, "flex-initial px-5 py-2");
+        this.drawBackButton(button_flex, this.onbackclick);
+        this.drawTitle(title_flex);
+    }
+
+    drawMenuPanelEntry(div, click_func, icon_func, item_text) {
+        var d = D.emptyDiv(div,
+                           "bg-gray-800 hover:bg-gray-900 text-gray-300 py-2");
+        d.onclick = (function() {
+            click_func()
+        }).bind(this);
+        var flex = D.emptyDiv(d, "flex items-center justify-start");
+        var icon_span = D.emptySpan(flex, "px-2 font-bold");
+        icon_func(icon_span);
+        D.textSpan(flex, item_text, "flex-grow text-sm");
+    }
+
+    ///////////////////////////////////////////////////////////////////////////
+    // Screens
+    ///////////////////////////////////////////////////////////////////////////
+
+    screenDiv(div_style) {
+        var flex = D.emptyDiv(this.app_div, div_style);
+        return flex;
+    }
+
+}
+
+exports.Screen = Screen;
+
+},{"../../utl/dom.js":343,"../../utl/icon.js":344}],361:[function(require,module,exports){
+// Copyright (c) 2021 Moneysocket Developers
 // Distributed under the MIT software license, see the accompanying
 // file LICENSE or http://www.opensource.org/licenses/mit-license.php
 
@@ -39703,7 +39714,7 @@ const I = require('../../utl/icon.js').IconUtl;
 
 const PERSIST_PROFILE = require("../../model/persist.js").PERSIST_PROFILE;
 
-var Screen = require('./Screen')
+const Screen = require('./screen.js').Screen;
 
 
 class StorageSettingsScreen extends Screen {
@@ -39825,8 +39836,8 @@ class StorageSettingsScreen extends Screen {
 
 exports.StorageSettingsScreen = StorageSettingsScreen;
 
-},{"../../model/persist.js":339,"../../utl/dom.js":343,"../../utl/icon.js":344,"./Screen":345}],362:[function(require,module,exports){
-// Copyright (c) 2021 Jarret Dyrbye
+},{"../../model/persist.js":339,"../../utl/dom.js":343,"../../utl/icon.js":344,"./screen.js":360}],362:[function(require,module,exports){
+// Copyright (c) 2021 Moneysocket Developers
 // Distributed under the MIT software license, see the accompanying
 // file LICENSE or http://www.opensource.org/licenses/mit-license.php
 
@@ -40330,7 +40341,7 @@ class CostanzaView {
 
 exports.CostanzaView = CostanzaView;
 
-},{"../model/model.js":338,"../utl/dom.js":343,"./screen/about.js":346,"./screen/connect.js":348,"./screen/connected-app.js":349,"./screen/connected-wallet.js":350,"./screen/connecting.js":351,"./screen/drill-level-one.js":352,"./screen/drill-level-two.js":353,"./screen/error.js":354,"./screen/main.js":355,"./screen/manual-provide-invoice.js":356,"./screen/manual-receive.js":357,"./screen/manual-send.js":358,"./screen/menu.js":359,"./screen/scan.js":360,"./screen/storage-settings.js":361}],363:[function(require,module,exports){
+},{"../model/model.js":338,"../utl/dom.js":343,"./screen/about.js":345,"./screen/connect.js":347,"./screen/connected-app.js":348,"./screen/connected-wallet.js":349,"./screen/connecting.js":350,"./screen/drill-level-one.js":351,"./screen/drill-level-two.js":352,"./screen/error.js":353,"./screen/main.js":354,"./screen/manual-provide-invoice.js":355,"./screen/manual-receive.js":356,"./screen/manual-send.js":357,"./screen/menu.js":358,"./screen/scan.js":359,"./screen/storage-settings.js":361}],363:[function(require,module,exports){
 const moneysocket = {};
 
 // utility classes
