@@ -31227,12 +31227,12 @@ body {
 .app-button {
   --tw-border-opacity: 1;
   border-color: rgba(75, 85, 99, var(--tw-border-opacity));
-  border-radius: 0.25rem;
+  border-radius: 0.375rem;
   border-width: 1px;
-  padding-top: 0.25rem;
-  padding-bottom: 0.25rem;
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
   --tw-text-opacity: 1;
   color: rgba(209, 213, 219, var(--tw-text-opacity));
 }
@@ -31331,7 +31331,7 @@ body {
   font-size: 1.25rem;
   line-height: 1.75rem;
   --tw-text-opacity: 1;
-  color: rgba(209, 213, 219, var(--tw-text-opacity));
+  color: rgba(147, 197, 253, var(--tw-text-opacity));
 }
 
 .div-reg-flex {
@@ -31385,57 +31385,6 @@ body {
   box-shadow: rgb(0 0 0 / 3%) 0px 0px 1px, rgb(0 0 0 / 6%) 0px 5px 10px, rgb(0 0 0 / 12%) 0px 20px 36px;
 }
 
-.section-background-lite {
-  --tw-bg-opacity: 1;
-  background-color: rgba(55, 65, 81, var(--tw-bg-opacity));
-  padding-top: 0.75rem;
-  padding-bottom: 0.75rem;
-  padding-left: 1.25rem;
-  padding-right: 1.25rem;
-  text-align: center;
-  position: fixed;
-  margin-top: auto;
-  flex: 0 0 auto;
-  bottom: 0;
-  width: 100%;
-}
-
-.connect-wallet-panel {
-  padding-top: 0.75rem;
-  padding-bottom: 0.75rem;
-  padding-left: 1.25rem;
-  padding-right: 1.25rem;
-  text-align: center;
-  position: relative;
-  margin-bottom: auto;
-  flex: 0 0 auto;
-  top: 0;
-  width: 100%;
-}
-
-.balance-panel {
-  padding-top: 0.75rem;
-  padding-bottom: 0.75rem;
-  padding-left: 1.25rem;
-  padding-right: 1.25rem;
-  text-align: center;
-  position: relative;
-}
-
-.receipt-panel {
-  border-radius: 1.5rem;
-  margin-top: 1.25rem;
-  margin-bottom: 1.25rem;
-  margin-left: 2rem;
-  margin-right: 2rem;
-  overflow-y: auto;
-  padding-top: 1.25rem;
-  padding-bottom: 1.25rem;
-  position: relative;
-  max-height: calc(100vh - 310px);
-  width: calc(100% - 4rem);
-}
-
 .slider {
   -webkit-appearance: none;
   width: 100%;
@@ -31463,25 +31412,6 @@ body {
   border-radius: 50%;
   background: #3f3c3a;
   cursor: pointer;
-}
-
-.receipt-panel::-webkit-scrollbar-track {
-  background-color: none;
-}
-
-.receipt-panel::-webkit-scrollbar {
-  background-color: none;
-  width: 0.65em;
-}
-
-.receipt-panel::-webkit-scrollbar-thumb {
-  --tw-bg-opacity: 1;
-  background-color: rgba(55, 65, 81, var(--tw-bg-opacity));
-  border-radius: 1em;
-}
-
-.receipt-panel::-webkit-scrollbar-button {
-  background-color: none;
 }
 
 @media (min-width: 640px) {
