@@ -34987,7 +34987,7 @@ class CostanzaController {
             this.view.redrawDynamicInfo();
         }).bind(this);
         this.model.onping = (function() {
-            this.view.redrawDynamicInfo();
+            this.view.redrawPing();
         }).bind(this);
         this.model.onreceiptchange = (function(uuid) {
             this.view.redrawReceiptInfo(uuid);
@@ -35573,6 +35573,7 @@ class CostanzaModel {
         console.log("consumer revoke");
         this.consumer_state = CONNECT_STATE.DISCONNECTED;
         this.consumer_reported_info = null;
+        this.disconnectProvider();
         if (this.onconsumeroffline != null) {
             this.onconsumeroffline();
         }
@@ -35616,7 +35617,8 @@ class CostanzaModel {
             console.log("invoice error: " + err);
             if (socket) {
                 this.receipts.socketSessionErrNotified(err);
-                // TODO - send error on socket with uuid reference
+                this.provider_stack.sendErrorNotification(
+                    err, request_reference_uuid);
                 return;
             }
             // TODO - present manual invoice error on screen
@@ -35741,13 +35743,12 @@ class CostanzaModel {
 
     providerHandleInvoiceRequest(msats, request_uuid) {
         console.log("got invoice request from provider: " + request_uuid);
-        // TODO log receipt
         this.receipts.socketSessionInvoiceRequest(msats, request_uuid);
         var err = this.transact.checkInvoiceRequestSocket();
         if (err != null) {
+            this.provider_stack.sendErrorNotification(err, request_uuid);
             this.receipts.socketSessionErrNotified(err);
             console.log("err: " + err);
-            // TODO send error message
             return;
         }
         this.consumer_stack.requestInvoice(msats, request_uuid);
@@ -35759,9 +35760,9 @@ class CostanzaModel {
         this.receipts.socketSessionPayRequest(bolt11, request_uuid);
         var err = this.transact.checkPayRequestSocket(bolt11);
         if (err != null) {
+            this.provider_stack.sendErrorNotification(err, request_uuid);
             this.receipts.socketSessionErrorNotified(err);
             console.log("err: " + err);
-            // TODO send error message
             return;
         }
         this.consumer_stack.requestPay(bolt11, request_uuid);
@@ -37293,6 +37294,7 @@ class AboutScreen extends Screen {
                         "text-subheading");
         D.textParagraph(flex, "Reckless! Use at your own risk!",
                         "text-subheading");
+        D.emptyDiv(flex, "h-10");
         D.hyperlinkTabOpen(flex, "Wallet Source",
                            "https://github.com/moneysocket/costanza",
                            "text-link");
@@ -37302,6 +37304,7 @@ class AboutScreen extends Screen {
                            "text-link");
         D.hyperlinkTabOpen(flex, "Donate", "https://socket.money/#donate",
                            "text-link");
+        D.emptyDiv(flex, "h-10");
     }
 
     ///////////////////////////////////////////////////////////////////////////
@@ -37309,13 +37312,13 @@ class AboutScreen extends Screen {
     ///////////////////////////////////////////////////////////////////////////
 
     draw() {
-        var flex = D.emptyDiv(this.app_div, "flex flex-col h-screen");
-        var flex_top = D.emptyDiv(flex, "flex-none");
+        var screen = this.screenDiv();
+        var flex_top = D.emptyDiv(screen, "flex-none");
         this.drawTitlePanel(flex_top);
 
-        var flex_mid = D.emptyDiv(flex, "flex-grow");
+        var flex_mid = D.emptyDiv(screen, "flex-grow");
         this.drawInfoPanel(flex_mid);
-        var flex_bottom = D.emptyDiv(flex, "flex-none");
+        var flex_bottom = D.emptyDiv(screen, "flex-none");
     }
 }
 
@@ -37614,7 +37617,7 @@ class ConnectScreen extends Screen {
         }
         var beacon = this.getBeacon();
         D.textParagraph(flex, beacon,
-                        "font-black break-words text-gray-300 py-5");
+                        "font-black break-all text-gray-300 py-5");
 
         var buttons = D.emptyDiv(flex, "flex justify-around py-4");
         this.drawConnectStoredButton(buttons,
@@ -37651,7 +37654,7 @@ class ConnectScreen extends Screen {
 
     draw() {
         //console.log("path: " + QrScanner.WORKER_PATH);
-        var flex = D.emptyDiv(this.app_div, "flex flex-col h-screen");
+        var flex = this.screenDiv();
         var flex_top = D.emptyDiv(flex, "flex-none");
         this.drawTitlePanel(flex_top);
 
@@ -37851,7 +37854,7 @@ class ConnectedAppScreen extends Screen {
         var flex = D.emptyDiv(div, "flex flex-col py-2");
         D.textParagraph(flex, "Authorized:", "text-gray-300");
         D.textParagraph(flex, wad.toString(),
-                        "font-bold text-3xl ms-green-txt ");
+                        "font-bold text-3xl text-green-400 ");
         var sats = (wad['msats'] / 1000.0).toFixed(3) + " sats";
         var hoverstring = wad['name'] + "\n" + sats;
         div.setAttribute("title", hoverstring);
@@ -37997,7 +38000,7 @@ class ConnectedAppScreen extends Screen {
     }
 
     draw() {
-        var flex = D.emptyDiv(this.app_div, "flex flex-col h-screen");
+        var flex = this.screenDiv();
         var flex_top = D.emptyDiv(flex, "flex-none");
         this.drawTitlePanel(flex_top);
 
@@ -38081,7 +38084,7 @@ class ConnectedWalletScreen extends Screen {
         var wad = this.model.getConsumerBalanceWad();
         D.deleteChildren(this.balance_div);
         D.textParagraph(this.balance_div, wad.toString(),
-                        "font-bold text-3xl ms-green-txt ");
+                        "font-bold text-3xl text-green-400 ");
         var sats = (wad['msats'] / 1000.0).toFixed(3) + " sats";
         var hoverstring = wad['name'] + "\n" + sats;
         this.balance_div.setAttribute("title", hoverstring);
@@ -38139,6 +38142,12 @@ class ConnectedWalletScreen extends Screen {
     // Screens
     ///////////////////////////////////////////////////////////////////////////
 
+    redrawPing() {
+        if (this.ping_div != null) {
+            this.drawPing();
+        }
+    }
+
     redrawInfo() {
         if (this.balance_div != null) {
             this.drawBalance();
@@ -38149,13 +38158,10 @@ class ConnectedWalletScreen extends Screen {
         if (this.payee_div != null) {
             this.drawPayee();
         }
-        if (this.ping_div != null) {
-            this.drawPing();
-        }
     }
 
     draw() {
-        var flex = D.emptyDiv(this.app_div, "flex flex-col h-screen");
+        var flex = this.screenDiv();
         var flex_top = D.emptyDiv(flex, "flex-none");
         this.drawTitlePanel(flex_top);
 
@@ -38236,7 +38242,7 @@ class ConnectingScreen extends Screen {
         var qr = Kjua({
             ecLevel:   "M",
             render:    "canvas",
-            size:      360,
+            size:      320,
             text:      beacon,
             label:     this.qr_string,
             mode:      "label",
@@ -38278,7 +38284,7 @@ class ConnectingScreen extends Screen {
 
     draw() {
         //console.log("path: " + QrScanner.WORKER_PATH);
-        var flex = D.emptyDiv(this.app_div, "flex flex-col h-screen");
+        var flex = this.screenDiv();
         var flex_top = D.emptyDiv(flex, "flex-none");
         this.drawTitlePanel(flex_top);
 
@@ -38474,7 +38480,7 @@ class DrillLevelOneScreen extends Screen {
 
     draw(receipt) {
         this.receipt = receipt;
-        var panel_div = D.emptyDiv(this.app_div, "flex flex-col h-screen");
+        var panel_div = this.screenDiv();
         var flex_top = D.emptyDiv(panel_div, "flex-none");
         this.drawTitlePanel(flex_top);
         this.drawInfoPanel(flex_top);
@@ -38564,19 +38570,19 @@ class DrillLevelTwoScreen extends Screen {
         var v = D.emptyDiv(div,
                            "flex justify-start text-gray-300 px-4");
         D.textSpan(v, this.typeToTitle(key), "text-xs font-bold w-1/4");
-        D.textSpan(v, value, "break-words w-3/4");
+        D.textSpan(v, value, "break-all w-3/4");
     }
 
     drawWad(div, key, wad) {
         var v = D.emptyDiv(div,
                            "flex justify-start text-gray-300 px-4");
         D.textSpan(v, this.typeToTitle(key), "text-xs font-bold w-1/4");
-        D.textSpan(v, wad.toString(), "break-words w-3/4");
+        D.textSpan(v, wad.toString(), "break-all w-3/4");
         var msats = wad.msats;
         var v = D.emptyDiv(div,
                            "flex justify-start text-gray-300 px-4");
         D.textSpan(v, "msats", "text-xs font-bold w-1/4");
-        D.textSpan(v, msats + " msats", "break-words w-3/4");
+        D.textSpan(v, msats + " msats", "break-all w-3/4");
     }
 
     drawInfoPanel(div) {
@@ -38605,7 +38611,7 @@ class DrillLevelTwoScreen extends Screen {
         console.log("drawing entry " + JSON.stringify(entry));
         this.receipt = receipt;
         this.entry = entry;
-        var panel_div = D.emptyDiv(this.app_div, "flex flex-col h-screen");
+        var panel_div = this.screenDiv();
         var flex_top = D.emptyDiv(panel_div, "flex-none");
         this.drawTitlePanel(flex_top);
         this.drawInfoPanel(flex_top);
@@ -38667,7 +38673,7 @@ class ErrorScreen extends Screen {
     ///////////////////////////////////////////////////////////////////////////
 
     draw(err_str) {
-        var flex = D.emptyDiv(this.app_div, "flex flex-col h-screen");
+        var flex = this.screenDiv();
         var flex_top = D.emptyDiv(flex, "flex-none h-10");
         var flex_mid = D.emptyDiv(flex, "flex-grow ");
         var flex_bottom = D.emptyDiv(flex, "flex-none h-10");
@@ -38726,7 +38732,8 @@ class MainScreen extends Screen {
     }
 
     drawConnectWalletButton(div, connect_func) {
-        this.drawButton(div, I.plug2x, "Connect Wallet Provider", connect_func, "main-button");
+        this.drawButton(div, I.plug2x, "Connect Wallet Provider", connect_func,
+                        "main-button");
     }
 
     drawConnectAppButton(div, connect_func) {
@@ -38744,7 +38751,7 @@ class MainScreen extends Screen {
         var button = D.emptyDiv(flex,
             "rounded px-4 py-4 bg-gray-800 hover:bg-gray-900");
         D.textParagraph(button, wad.toString(),
-                        "font-bold text-3xl ms-green-txt");
+                        "font-bold text-3xl text-green-400");
         button.onclick = (function() {
             this.onconnectwalletclick();
         }).bind(this);
@@ -38757,24 +38764,16 @@ class MainScreen extends Screen {
         var wad = this.model.getProviderBalanceWad();
         D.deleteChildren(this.auth_balance_div);
         var border = D.emptyDiv(this.auth_balance_div,
-                                "px-2 py-2 bg-gray-800 hover:bg-gray-900 border border-gray-600 rounded-2xl text-gray-300");
-        var icon_span = D.emptySpan(border, "px-2 font-bold");
-        icon_span.onclick = (function() {
-            this.onconnectappclick();
-        }).bind(this);
-        I.flyingmoney(icon_span);
-        var a = D.textSpan(border, "App", "px-2 font-bold text-gray-300");
-        a.onclick = (function() {
-            this.onconnectappclick();
-        }).bind(this);
-        var p = D.textParagraph(border, wad.toString(),
-                                "font-bold text-sm text-gray-300");
-        p.onclick = (function() {
-            this.onconnectappclick();
-        }).bind(this);
+            ("px-4 py-2 bg-gray-800 hover:bg-gray-900 border " +
+             "border-gray-600 rounded-2xl text-gray-300"));
         border.onclick = (function() {
             this.onconnectappclick();
         }).bind(this);
+        var icon_span = D.emptySpan(border, "px-2 font-bold");
+        I.flyingmoney(icon_span);
+        var a = D.textSpan(border, "App Authorized", "px-2 font-bold text-sm text-gray-300");
+        var p = D.textParagraph(border, wad.toString(),
+                                "font-bold text-sm text-gray-300");
         var sats = (wad['msats'] / 1000.0).toFixed(3) + " sats";
         var hoverstring = wad['name'] + "\n" + sats;
         border.setAttribute("title", hoverstring);
@@ -38783,7 +38782,8 @@ class MainScreen extends Screen {
     drawPing() {
         var msecs = this.model.getConsumerLastPing();
         D.deleteChildren(this.ping_div);
-        D.textParagraph(this.ping_div, msecs.toString() + " ms", "text-sm text-gray-300");
+        D.textParagraph(this.ping_div, msecs.toString() + " ms",
+                        "text-sm text-gray-300");
     }
 
 
@@ -38805,17 +38805,21 @@ class MainScreen extends Screen {
 
         if (error != null) {
             D.textSpan(flex, "Manual Receive Err: " + error,
-                       "flex-grow font-bold");
+                       "pl-4 font-bold text-left");
         } else if (! got_invoice) {
             D.textSpan(flex, "Waiting for invoice " + wad.toString(),
-                       "flex-grow text-sm");
+                       "pl-4 text-left");
         } else if (completed) {
-            D.textSpan(flex, "Manual Receive", "flex-grow text-sm");
+            D.textSpan(flex, "Manual Receive", "pl-4 text-left");
+            D.emptyDiv(flex, "flex-grow");
             D.textSpan(flex, "+ " + wad.toString(),
-                       "font-bold text-green-400 px-2");
+                       "font-bold text-green-400 text-right w-40");
         } else {
-            D.textSpan(flex, "Manual receive in progress ", "flex-grow text-sm");
-            D.textSpan(flex, wad.toString(), "font-bold ms-green-txt px-2");
+            D.textSpan(flex, "Manual receive in progress ",
+                       "pl-4 text-left");
+            D.emptyDiv(flex, "flex-grow");
+            D.textSpan(flex, wad.toString(),
+                       "font-bold text-gray-400 text-right w-40");
         }
     }
 
@@ -38834,15 +38838,16 @@ class MainScreen extends Screen {
         description = (description == null) ? "(no description)" : description;
 
         if (error != null) {
-            D.textSpan(flex, "Pay Error: " + error, "flex-grow font-bold");
+            D.textSpan(flex, "Pay Error: " + error, "pl-4 text-left font-bold");
         } else if (! completed) {
-            D.textSpan(flex, "Paying", "flex-grow font-bold");
-            D.textSpan(flex, description, "flex-grow text-sm");
+            D.textSpan(flex, "Paying", "pl-4 font-bold text-left");
+            D.textSpan(flex, description, "pl-4 text-left");
         } else {
-            D.textSpan(flex, "Paid", "flex-grow font-bold");
-            D.textSpan(flex, description, "flex-grow text-sm");
+            D.textSpan(flex, "Paid", "pl-4 text-left");
+            D.textSpan(flex, description, "text-left pl-4");
+            D.emptyDiv(flex, "flex-grow");
             D.textSpan(flex, "+ " + wad.toString(),
-                       "font-bold text-red-700 px-2");
+                       "font-bold text-red-400 w-40 text-right");
         }
     }
 
@@ -38858,17 +38863,19 @@ class MainScreen extends Screen {
         var flex = D.emptyDiv(d, "flex items-center justify-start");
         var icon_span = D.emptySpan(flex, "px-2 font-bold");
         I.flyingmoney(icon_span);
-        var label = ended ? "Socket Session" : "In Progress";
-        D.textSpan(flex, label, "flex-grow text-sm");
-        D.textSpan(flex, total_txs.toString() + "tx", "font-bold px-2");
+        var label = ended ? "Socket Session Completed" :
+                            "Socket Session In Progress";
+        D.textSpan(flex, label, "pl-4 text-left");
+        D.emptyDiv(flex, "flex-grow");
+        D.textSpan(flex, total_txs.toString() + "tx", "font-bold w-30 text-right");
         var wad = (total_txs == 0) ?
             this.model.msatsToWalletCurrencyWad(0) : total_wad;
         if (increment) {
             D.textSpan(flex, "+ " + wad.toString(),
-                       "font-bold ms-green-txt px-2");
+                       "font-bold text-green-400 w-40 text-right");
         } else {
             D.textSpan(flex, "- " + wad.toString(),
-                       "font-bold text-red-700 px-2");
+                       "font-bold text-red-400 w-40 text-right");
         }
     }
 
@@ -38878,8 +38885,9 @@ class MainScreen extends Screen {
 
     drawConnectWalletPanel(div, connect_func) {
         var flex = D.emptyDiv(div,
-                              "flex-col justify-evenly connect-wallet-panel");
-        this.drawConnectWalletButton(flex, connect_func);
+                              "flex flex-col justify-center items-center py-5 bg-gray-700");
+        var row = D.emptyDiv(flex, "flex flex-row justify-center");
+        this.drawConnectWalletButton(row, connect_func);
     }
 
     drawAppSocketInfo(connect_func) {
@@ -38901,14 +38909,13 @@ class MainScreen extends Screen {
     }
 
     drawBalancePanel(div, connect_func) {
-        var flex = D.emptyDiv(div,
-                              "flex-col justify-evenly section-background balance-panel");
+        var outer = D.emptyDiv(div, "bg-gray-700 px-1 py-2");
+        var flex = D.emptyDiv(outer,
+            "flex flex-col justify-evenly rounded-xl px-2 py-2 bg-gray-800");
         var left_box = D.emptyDiv(flex, "flex flex-row");
 
         this.auth_balance_div = D.emptyDiv(left_box);
-        this.drawAppSocketInfo(left_box, connect_func);
-        //var button_div = D.emptyDiv(left_box);
-        //this.drawConnectAppButton(button_div, connect_func);
+        this.drawAppSocketInfo(connect_func);
 
         this.balance_div = D.emptyDiv(flex);
         this.drawBalance();
@@ -38935,14 +38942,16 @@ class MainScreen extends Screen {
     }
 
     drawReceiptPanel(div, click_func) {
-        var flex = D.emptyDiv(div,
-                              "flex-col justify-evenly section-background receipt-panel");
+        var outer = D.emptyDiv(div, "px-1 py-2 overflow-auto");
+        var s = D.emptyDiv(outer, "px-4 py-4 bg-gray-800 rounded-3xl");
+        var flex = D.emptyDiv(s, "flex flex-col justify-evenly");
         this.receipts_div = D.emptyDiv(flex);
         this.drawReceipts(click_func);
     }
 
     drawActionPanel(div, scan_func, menu_func) {
-        var flex = D.emptyDiv(div, "flex justify-evenly section-background-lite");
+        var flex = D.emptyDiv(div,
+            "flex justify-evenly py-4 bg-gray-700");
         this.drawScanButton(flex, scan_func);
         this.drawMenuButton(flex, menu_func);
     }
@@ -38958,6 +38967,9 @@ class MainScreen extends Screen {
         if (this.auth_balance_div != null) {
             this.drawAppSocketInfo(this.onconnectappclick);
         }
+    }
+
+    redrawPing() {
         if (this.ping_div != null) {
             this.drawPing();
         }
@@ -38971,28 +38983,26 @@ class MainScreen extends Screen {
     }
 
     draw() {
-        var flex = this.screenDiv("div-reg-flex");
-        var flex_top = D.emptyDiv(flex, "flex-none");
-        var flex_mid = D.emptyDiv(flex, "flex-grow");
-        var flex_bottom = D.emptyDiv(flex, "flex-none");
+        var screen = this.screenDiv();
+        var flex = D.emptyDiv(screen, "flex flex-col justify-between h-full")
 
         switch (this.model.getConsumerConnectState()) {
         case CONNECT_STATE.CONNECTED:
-            this.drawBalancePanel(flex_top, this.onconnectappclick);
+            this.drawBalancePanel(flex, this.onconnectappclick);
             break;
         case CONNECT_STATE.CONNECTING:
-            this.drawConnectWalletPanel(flex_top, this.onconnectwalletclick);
+            this.drawConnectWalletPanel(flex, this.onconnectwalletclick);
             break;
         case CONNECT_STATE.DISCONNECTED:
-            this.drawConnectWalletPanel(flex_top, this.onconnectwalletclick);
+            this.drawConnectWalletPanel(flex, this.onconnectwalletclick);
             break;
         default:
             console.error("unknown state");
             break;
         }
 
-        this.drawReceiptPanel(flex_mid, this.onreceiptclick);
-        this.drawActionPanel(flex_bottom, this.onscanclick, this.onmenuclick);
+        this.drawReceiptPanel(flex, this.onreceiptclick);
+        this.drawActionPanel(flex, this.onscanclick, this.onmenuclick);
     }
 }
 
@@ -39028,7 +39038,8 @@ class ManualProvideInvoiceScreen extends Screen {
     ///////////////////////////////////////////////////////////////////////////
 
     drawCopyBolt11Button(div, copy_func) {
-        this.drawButton(div, I.copy2x, "Copy", copy_func, "main-button");
+        var b = this.drawButton(div, I.copy2x, "Copy", copy_func, "main-button");
+        this.copy_span = b.inner_text_span;
     }
 
     doCopy() {
@@ -39048,7 +39059,7 @@ class ManualProvideInvoiceScreen extends Screen {
         var qr = Kjua({
             ecLevel:   "M",
             render:    "canvas",
-            size:      360,
+            size:      320,
             text:      upper_bolt11,
             label:     "manual bolt11",
             mode:      "label",
@@ -39077,7 +39088,7 @@ class ManualProvideInvoiceScreen extends Screen {
     ///////////////////////////////////////////////////////////////////////////
 
     draw(bolt11) {
-        var flex = D.emptyDiv(this.app_div, "flex flex-col h-screen");
+        var flex = this.screenDiv();
         var flex_top = D.emptyDiv(flex, "flex-none");
         this.drawTitlePanel(flex_top);
 
@@ -39202,7 +39213,7 @@ class ManualReceiveScreen extends Screen {
         var across = D.emptyDiv(div, "flex justify-around py-4 bg-gray-800");
         var col1 = D.emptyDiv(across, "flex flex-col");
         D.textSpan(col1, "Available:", "text-gray-300");
-        D.textSpan(col1, wad.toString(), "font-bold text-xl ms-green-txt");
+        D.textSpan(col1, wad.toString(), "font-bold text-xl text-green-400");
         var col2 = D.emptyDiv(across, "flex flex-col items-center");
         var r1 = D.emptyDiv(col2, "flex justify-center");
         D.textSpan(r1, "Can Send:", "text-gray-300");
@@ -39228,7 +39239,7 @@ class ManualReceiveScreen extends Screen {
     ///////////////////////////////////////////////////////////////////////////
 
     draw() {
-        var flex = D.emptyDiv(this.app_div, "flex flex-col h-screen");
+        var flex = this.screenDiv();
         var flex_top = D.emptyDiv(flex, "flex-none");
         this.drawTitlePanel(flex_top);
 
@@ -39314,13 +39325,13 @@ class ManualSendScreen extends Screen {
 
         var val = D.emptyDiv(div, "flex flex-col");
         D.textParagraph(val, this.bolt11,
-                   "font-black break-words text-gray-300 py-5");
+                   "font-black break-all text-gray-300 py-5");
         D.textParagraph(val, "Description: " + description,
                         "font-black text-gray-300 py-5");
         D.textParagraph(val, "Requested: " + send_wad.toString(),
                    "font-black text-gray-300 py-5");
         D.textParagraph(val, "Expires: " + expiryfmt.toString(),
-                   "font-black break-words text-gray-300 py-5");
+                   "font-black break-all text-gray-300 py-5");
 
         var button_div = D.emptyDiv(val, "flex justify-center py-2");
         this.drawPayButton(button_div,
@@ -39363,7 +39374,7 @@ class ManualSendScreen extends Screen {
 
     draw(bolt11) {
         this.bolt11 = bolt11;
-        var flex = D.emptyDiv(this.app_div, "flex flex-col h-screen");
+        var flex = this.screenDiv();
         var flex_top = D.emptyDiv(flex, "flex-none");
         this.drawTitlePanel(flex_top);
 
@@ -39466,7 +39477,7 @@ class MenuScreen extends Screen {
     ///////////////////////////////////////////////////////////////////////////
 
     draw() {
-        var flex = D.emptyDiv(this.app_div, "flex flex-col h-screen");
+        var flex = this.screenDiv();
         var flex_top = D.emptyDiv(flex, "flex-none");
         this.drawTitlePanel(flex_top);
         this.drawEntryPanel(flex_top);
@@ -39595,7 +39606,7 @@ class ScanScreen extends Screen {
 
     draw() {
         //console.log("path: " + QrScanner.WORKER_PATH);
-        var flex = D.emptyDiv(this.app_div, "flex flex-col h-screen");
+        var flex = this.screenDiv();
         var flex_top = D.emptyDiv(flex, "flex-none");
         this.drawTitlePanel(flex_top);
 
@@ -39695,9 +39706,11 @@ class Screen {
     // Screens
     ///////////////////////////////////////////////////////////////////////////
 
-    screenDiv(div_style) {
-        var flex = D.emptyDiv(this.app_div, div_style);
-        return flex;
+    screenDiv() {
+        var row = D.emptyDiv(this.app_div, "flex flex-row justify-center");
+        var body = D.emptyDiv(row,
+            "h-screen sm:w-full md:w-5/6 lg:w-3/4 xl:w-1/2 2xl:w-1/3");
+        return body;
     }
 
 }
@@ -39825,7 +39838,7 @@ class StorageSettingsScreen extends Screen {
     ///////////////////////////////////////////////////////////////////////////
 
     draw() {
-        var flex = D.emptyDiv(this.app_div, "flex flex-col h-screen");
+        var flex = this.screenDiv();
         var flex_top = D.emptyDiv(flex, "flex-none");
         this.drawTitlePanel(flex_top);
 
@@ -39877,6 +39890,7 @@ const DrillLevelTwoScreen = require(
 class CostanzaView {
     constructor(app_div, model) {
         this.app_div = app_div;
+        this.drawn = null;
         this.model = model;
         this.main_screen = this.setupMainScreen(this.app_div);
         this.scan_screen = this.setupScanScreen(this.app_div);
@@ -40209,9 +40223,20 @@ class CostanzaView {
     // goto ui
     ///////////////////////////////////////////////////////////////////////////
 
-    changeToMain() {
+    undraw() {
         D.deleteChildren(this.app_div);
+        this.drawn = null;
+    }
+
+    changeToMain() {
+        this.undraw();
         this.main_screen.draw();
+        this.drawn = this.main_screen;
+    }
+
+    redrawPing() {
+        this.main_screen.redrawPing();
+        this.connected_wallet_screen.redrawPing();
     }
 
     redrawDynamicInfo() {
@@ -40221,82 +40246,100 @@ class CostanzaView {
     }
 
     redrawReceiptInfo(uuid) {
-        this.main_screen.redrawReceiptInfo(uuid);
-        this.drill_level_one_screen.redrawUuid(uuid);
+        if (this.drawn == this.main_screen) {
+            this.main_screen.redrawReceiptInfo(uuid);
+        } else if (this.drawn == this.drill_level_one_screen) {
+            this.drill_level_one_screen.redrawUuid(uuid);
+        }
     }
 
     changeToScan() {
-        D.deleteChildren(this.app_div);
+        this.undraw();
         this.scan_screen.draw();
+        this.drawn = this.scan_screen;
     }
 
     changeToError(error_str) {
-        D.deleteChildren(this.app_div);
+        this.undraw();
         this.error_screen.draw(error_str);
+        this.drawn = this.error_screen;
     }
 
     changeToMenu() {
         console.log("change to main");
-        D.deleteChildren(this.app_div);
+        this.undraw();
         this.menu_screen.draw();
+        this.drawn = this.menu_screen;
     }
 
     changeToReceipt(receipt) {
-        D.deleteChildren(this.app_div);
+        this.undraw();
         this.drill_level_one_screen.draw(receipt);
+        this.drawn = this.drill_level_one_screen;
     }
 
     changeToReceiptEntry(receipt, entry) {
-        D.deleteChildren(this.app_div);
+        this.undraw();
         this.drill_level_two_screen.draw(receipt, entry);
+        this.drawn = this.drill_level_two_screen;
     }
 
     changeToManualSend(bolt11) {
-        D.deleteChildren(this.app_div);
+        this.undraw();
         this.manual_send_screen.draw(bolt11);
+        this.drawn = this.manual_send_screen;
     }
 
     changeToConnectWallet(beacon) {
-        D.deleteChildren(this.app_div);
+        this.undraw();
         this.connect_wallet_screen.draw();
+        this.drawn = this.connect_wallet_screen;
     }
 
     changeToConnectApp(beacon) {
-        D.deleteChildren(this.app_div);
+        this.undraw();
         this.connect_app_screen.draw();
+        this.drawn = this.connect_app_screen;
     }
 
     changeToConnectingWallet() {
-        D.deleteChildren(this.app_div);
+        this.undraw();
         this.connecting_wallet_screen.draw();
+        this.drawn = this.connecting_wallet_screen;
     }
 
     changeToConnectingApp() {
-        D.deleteChildren(this.app_div);
+        this.undraw();
         this.connecting_app_screen.draw();
+        this.drawn = this.connecting_app_screen;
     }
 
     changeToAbout(beacon) {
-        D.deleteChildren(this.app_div);
+        this.undraw();
         this.about_screen.draw();
+        this.drawn = this.about_screen;
     }
 
     changeToManualProvideInvoice(bolt11) {
-        D.deleteChildren(this.app_div);
+        this.undraw();
         this.manual_provide_invoice_screen.draw(bolt11);
+        this.drawn = this.manual_provide_invoice_screen;
     }
 
     changeToWalletProviderSetup() {
-        D.deleteChildren(this.app_div);
+        this.undraw();
         switch (this.model.getConsumerConnectState()) {
         case CONNECT_STATE.CONNECTED:
             this.connected_wallet_screen.draw();
+            this.drawn = this.connected_wallet_screen;
             break;
         case CONNECT_STATE.CONNECTING:
             this.connecting_wallet_screen.draw();
+            this.drawn = this.connecting_wallet_screen;
             break;
         case CONNECT_STATE.DISCONNECTED:
             this.connect_wallet_screen.draw();
+            this.drawn = this.connect_wallet_screen;
             break;
         default:
             console.error("unknown state");
@@ -40305,16 +40348,19 @@ class CostanzaView {
     }
 
     changeToAppConsumerSetup() {
-        D.deleteChildren(this.app_div);
+        this.undraw();
         switch (this.model.getProviderConnectState()) {
         case CONNECT_STATE.CONNECTED:
             this.connected_app_screen.draw();
+            this.drawn = this.connected_app_screen;
             break;
         case CONNECT_STATE.CONNECTING:
             this.connecting_app_screen.draw();
+            this.drawn = this.connecting_app_screen;
             break;
         case CONNECT_STATE.DISCONNECTED:
             this.connect_app_screen.draw();
+            this.drawn = this.connect_app_screen;
             break;
         default:
             console.error("unknown state");
@@ -40323,14 +40369,16 @@ class CostanzaView {
     }
 
     changeToBolt11Receive() {
-        D.deleteChildren(this.app_div);
+        this.undraw();
         switch (this.model.getConsumerConnectState()) {
         case CONNECT_STATE.CONNECTED:
             this.manual_receive_screen.draw();
+            this.drawn = this.manual_receive_screen;
             break;
         case CONNECT_STATE.CONNECTING:
         case CONNECT_STATE.DISCONNECTED:
             this.error_screen.draw("must be connected to wallet provider");
+            this.drawn = this.error_screen;
             break;
         default:
             console.error("unknown state");
@@ -40340,8 +40388,9 @@ class CostanzaView {
 
     changeToStorageSettings() {
         console.log("storage settings stub");
-        D.deleteChildren(this.app_div);
+        this.undraw();
         this.storage_settings_screen.draw();
+        this.drawn = this.storage_settings_screen;
     }
 }
 
