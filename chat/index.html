@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<!-- Copyright (c) 2021 Moneysocket Developers
+Distributed under the MIT software license, see the accompanying
+file LICENSE or http://www.opensource.org/licenses/mit-license.php -->
+<html>
+<meta charset="UTF-8" />
+<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+<meta content="utf-8" http-equiv="encoding">
+<head>
+<title> Moneysocket Chat </title>
+<link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+<link href="css/style.css" rel="stylesheet">
+
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+<link rel="manifest" href="favicon/site.webmanifest">
+
+</head>
+<body class="background">
+<!-- body column -->
+<div class="flex flex-col h-screen">
+
+<!-- top banner col entry-->
+<div class="bannerheight">
+    <img class="h-full px-2 py-2 megashadow" alt="Moneysocket Chat" src="img/banner.png"> </a>
+</div>
+
+<!-- space -->
+
+<div class="fillheight"> </div>
+<!-- chat output -->
+<div class="chatheight w-full">
+    <!-- side-by-side -->
+    <div class="flex justify-start h-full w-full">
+        <!-- chat zone -->
+        <div class="h-full w-full px-1">
+            <div id="messages" class="messageheight overflow-auto border border-black border-2 rounded-md bg-transparent w-full h-full px-2 py-2"> </div>
+
+        <!-- chat input -->
+        <div class="inputheight py-2">
+            <!-- row -->
+            <div class="flex justify-start h-full w-full">
+                <!-- chat typing -->
+                <div class="flex justify-around h-full w-full border border-black rounded-md py-2 pl-2">
+                <textarea class="h-full w-5/6 bg-gray-200" id="input-message" style="resize:none;" placeholder="type chat message..." maxlength=1000></textarea>
+                <div class="px-2 w-1/6">
+                    <button class="border border-black rounded hover:bg-gray-200 h-full w-full px-2 py-2 font-bold text-xl break-all" id="send-message">Send</button>
+                </div>
+                </div>
+
+
+            </div>
+        </div>
+        <!-- /chat zone -->
+        </div>
+
+        <!-- side setup interfaces -->
+        <div class="flex flex-col justify-around px-2">
+            <!-- introduction interface -->
+            <div class="border border-black rounded">
+            <div class="flex justify-center"><div class="px-2 py-1 w-60 text-center"> Each chat message costs 1 Satoshi to post. Payment can be automated by connecting a Moneysocket wallet. </div> </div>
+            <!-- tutorial link interface -->
+            <div class="px-2 pb-4 font-bold text-3xl text-green-700 text-center"> <a href="https://socket.money" target="_blank">See Tutorial</a></div>
+            </div>
+
+            <!-- connect interface -->
+            <div class="py-1">
+            <div class="w-full border border-black bg-transparent rounded" id="connect-interface"> </div>
+            </div>
+
+            <!-- identity interface -->
+            <div class="flex flex-col justify-around border border-black rounded px-2 py-1">
+                <div class="text-center">I identify as:</div>
+                <div class="text-center font-bold" id="current-identity"></div>
+                <div class="h-4"></div>
+                <div class="flex justify-center pb-3">
+                    <div id="select-identity"> </div>
+                </div>
+                <div class="flex justify-between border border-black rounded">
+                <input class="px-2 py-1" type="text" id="custom-identity" placeholder="custom" size="8" maxlength=20>
+                <div class="px-2 py-1">
+                    <button class="border border-black rounded px-2 py-1" id="set-identity">Set</button>
+                </div>
+                </div>
+            </div>
+            <!-- nope -->
+            <div class="flex justify-center px-2 py-1">
+                <img class="w-42 border border-gray-400" alt="Nope" src="img/nope.png"> </a>
+            </div>
+
+
+        </div>
+
+    </div>
+</div>
+
+
+<!-- /body -->
+</div>
+</body>
+<script type="module" src="js/app.js"></script>
+</html>
