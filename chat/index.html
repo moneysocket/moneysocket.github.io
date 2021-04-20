@@ -57,12 +57,18 @@ file LICENSE or http://www.opensource.org/licenses/mit-license.php -->
         </div>
 
         <!-- side setup interfaces -->
-        <div class="flex flex-col justify-around px-2">
+        <div class="flex flex-col px-2">
             <!-- introduction interface -->
             <div class="border border-black rounded">
             <div class="flex justify-center"><div class="px-2 py-1 w-60 text-center"> Each chat message costs 1 Satoshi to post. Payment can be automated by connecting a Moneysocket wallet. </div> </div>
             <!-- tutorial link interface -->
-            <div class="px-2 pb-4 font-bold text-3xl text-green-700 text-center"> <a href="https://socket.money" target="_blank">See Tutorial</a></div>
+            <a class="px-1 pb-5" target="_blank" href="https://socket.money/tutorial">
+                <div class="flex flex-row justify-center items-center">
+                <img class="drop-shadow" style="max-width:30px;max-height:30px" alt="tutorial" src="img/money-wings.png">
+                <div class="pl-3 text-3xl font-bold text-green-700 drop-shadow">See Tutorial</div>
+                </div>
+            </a>
+
             </div>
 
             <!-- connect interface -->
@@ -86,8 +92,29 @@ file LICENSE or http://www.opensource.org/licenses/mit-license.php -->
                 </div>
             </div>
             <!-- nope -->
-            <div class="flex justify-center px-2 py-1">
-                <img class="w-42 border border-gray-400" alt="Nope" src="img/nope.png"> </a>
+
+            <div class="border border-black rounded">
+                <div class="flex flex-col px-2">
+                    <div class="flex justify-center px-2 py-2">
+                        <img class="w-32 border border-gray-400" alt="Nope" src="img/nope.png"> </a>
+                    </div>
+                    <div class="flex justify-center px-2 py-1">
+                        <a class="px-1" target="_blank" href="https://github.com/moneysocket/chat">
+                            <div class="flex flex-row justify-center items-center">
+                            <img class="drop-shadow" style="max-width:30px;max-height:30px" alt="chatsource" src="img/github.png">
+                            <div class="pl-3 text-xl font-bold text-black drop-shadow">Source Code</div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="flex justify-center px-2 py-1">
+                        <a class="px-1" target="_blank" href="https://socket.money">
+                            <div class="flex flex-row justify-center items-center">
+                            <img class="drop-shadow" style="max-width:30px;max-height:30px" alt="home" src="img/moneysocket-trans.png">
+                            <div class="pl-3 text-xl font-bold text-black drop-shadow">Moneysocket</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
             </div>
 
 
