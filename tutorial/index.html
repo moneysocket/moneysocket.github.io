@@ -3,12 +3,65 @@
 <head>
 
 <link href="tailwind.min.css" rel="stylesheet">
+<style>
+@import url("https://fonts.googleapis.com/css?family=Poppins&display=swap");
+
+body {
+  font-family: Poppins;
+}
+</style>
 
 </head>
 
-<title>Moneysocket Chat Tutorial</title>
+<title>Moneysocket Tutorial</title>
 
 <body>
+<center>
+
+<div style="background-color:#159245" class="flex flex-wrap items-center justify-start py-2">
+    <a href="https://socket.money">
+        <div class="flex flex-row items-center justify-start pl-2">
+            <img class="px-2 py-2 drop-shadow" style="max-width:71px;min-width:71px;" src="/img/moneysocket-trans.png">
+            <div class="font-bold text-2xl text-white drop-shadow">moneysocket</div>
+        </div>
+    </a>
+    <div class="flex-grow"></div>
+    <div class="flex flex-wrap justify-center">
+    <a class="px-1" target="_blank" href="https://github.com/moneysocket/awesome-moneysocket">
+        <img class="drop-shadow" style="max-width:3.5rem;max-height:3.5rem" alt="code" src="/img/awesomeface.png">
+        <div class="text-xs text-white drop-shadow w-14">Code</div>
+    </a>
+    <a class="px-1" target="_blank" href="https://socket.money/chat">
+        <img class="drop-shadow" style="max-width:3.5rem;max-height:3.5rem" alt="chat" src="/img/eye_200.png">
+        <div class="text-xs text-white drop-shadow w-14">Chat</div>
+    </a>
+    <a class="px-1" target="_blank" href="https://socket.money/wallet">
+        <img class="drop-shadow" style="max-width:3.5rem;max-height:3.5rem" alt="wallet" src="/img/wallet-brown_200.png">
+        <div class="text-xs text-white drop-shadow w-14">Wallet</div>
+    </a>
+    <a class="px-1" target="_blank" href="https://custodial.socket.money">
+        <img class="drop-shadow" style="max-width:3.5rem;max-height:3.5rem" alt="custodial" src="/img/custodial_200.png">
+        <div class="text-xs text-white drop-shadow w-14">Custodial</div>
+    </a>
+    <a class="px-1" target="_blank" href="https://socket.money/codec">
+        <img class="drop-shadow" style="max-width:3.5rem;max-height:3.5rem" alt="Beacon" src="/img/beacon_200.png">
+        <div class="text-xs text-white drop-shadow w-14">Beacon</div>
+    </a>
+    <a class="px-1" target="_blank" href="https://t.me/moneysocket">
+        <img class="drop-shadow" style="max-width:3.5rem;max-height:3.5rem" alt="telegram" src="/img/telegram_200.png">
+        <div class="text-xs text-white drop-shadow w-14">Telegram</div>
+    </a>
+    <a class="px-1" target="_blank" href="https://twitter.com/moneysocket">
+        <img class="drop-shadow" style="max-width:3.5rem;max-height:3.5rem" alt="twitter" src="/img/twitter_200.png">
+        <div class="text-xs text-white drop-shadow w-14">Twitter</div>
+    </a>
+    <a class="px-1" href="#donate">
+        <img class="drop-shadow" style="max-width:3.5rem;max-height:3.5rem" alt="donate" src="/img/Bitcoin_logo-circle.png">
+        <div class="text-xs text-white drop-shadow w-14">Donate</div>
+    </a>
+    </div>
+</div>
+
 
 <div class="flex flex-row justify-center">
 <div class="flex flex-col w-5/6 max-w-xl">
@@ -16,7 +69,7 @@
 <!-- title box -->
 <div class="py-6">
 <div class="bg-green-200 px-4 py-4 rounded text-5xl text-center">
-Moneysocket Wallet and Chat Tutorial
+Moneysocket Tutorial
 </div>
 <!-- end title -->
 </div>
@@ -25,11 +78,11 @@ Moneysocket Wallet and Chat Tutorial
 <div class="flex flex-row justify-center pb-10">
 <div class="flex flex-col w-3/4">
 <div class="bg-green-200 py-1 rounded">
-<div class="text-center font-bold py-2">The Goal of this Tutorial:</div>
+<div class="text-center font-bold py-2">The Goal:</div>
 
 <div class="flex flex-row justify-center">
         <div class="flex flex-col">
-            <p class="text-center py-4 px-4"> This tutorial will demonstrate Moneysocket through hands-on experience using applications built upon the protocol libraries. This includes the <a class="text-blue-900" target="_blank"  href="https://socket.money/chat"><b>Moneysocket Chat App</b></a>, the <a class="text-blue-900" target="_blank" href="https://socket.money/wallet"><b>Costanza Wallet App</b></a> and the <a class="text-blue-900" target="_blank" href="https://custodial.socket.money"><b>Custodial Provider</b></a>. By following these steps, you should gain knowledge of how these pieces interoperate through the protocol and should hopefully stoke your imagination for what kinds of apps could be developed in this ecosystem.</p>
+            <p class="text-center py-4 px-4"> This tutorial will demonstrate Moneysocket through hands-on experience using applications built upon the protocol libraries. This includes the <a class="text-blue-900" target="_blank"  href="https://socket.money/chat"><b>Moneysocket Chat App</b></a>, the <a class="text-blue-900" target="_blank" href="https://socket.money/wallet"><b>Costanza Wallet</b></a> and the <a class="text-blue-900" target="_blank" href="https://custodial.socket.money"><b>Custodial Provider Portal</b></a>. By following these steps, you should gain knowledge of how these pieces interoperate through the protocol and should hopefully stoke your imagination for what kinds of apps could be developed in this ecosystem.</p>
             <p class="text-center px-4"> Moneysocket Chat: </p>
             <img class="px-4 py-4 w-auto" height="200" src="img/chat.png">
             <p class="text-center px-4"> Costanza Wallet: </p>
@@ -52,13 +105,13 @@ Moneysocket Wallet and Chat Tutorial
         <div class="flex flex-col">
             <p class="text-center px-4 py-4"> Moneysocket works on an account model for holding an balance assigned authorized to a socket connection. This account with the ability to transact on the Lightning Network must be provided at the "Terminus".</p>
             <p class="text-center px-4 py-4">
-            For those interested in getting deep into developing Moneysocket applications, or are a power user that wants to self-custody all their funds, you can run the <a class="text-blue-900" href="https://github.com/moneysocket/terminus">Terminus</a> application with your Lightning Network node.
+            For advanced users that wants to self-custody, you can run the <a class="text-blue-900" href="https://github.com/moneysocket/terminus">Terminus</a> application with your Lightning Network node. However, this tutorial is to show you a quicker path using a custodial account.
             </p>
-            <p class="text-center px-4 py-4"> For those following this tutorial, we have a custodial solution that is set up for trying out Moneysocket more casually. It does not require you to run and configure your own node, so you can get up and running quickly. Go to the <a class="text-blue-900" target="_blank" href="https://custodial.socket.money">Custodial Portal</a> and register:
+            <p class="text-center px-4 py-4"> You will only need to deposit a few satoshis to start learning about Moneysocket. Go to the <a class="text-blue-900" target="_blank" href="https://custodial.socket.money">Custodial Portal</a> and register:
             </p>
             <img class="px-4 py-4" src="img/register1.png">
             <img class="px-4 py-4" src="img/register2.png">
-            <p class="text-center px-4 py-4"> Please head the portal's warning you to not leave sats in the custodial accounts that you are not comfortable leaving as a donation to the project. The portal does not verify your email address, but if you leave a real address, we can contact you in the event the accounts are reset.</p>
+            <p class="text-center px-4 py-4"> Please note the warning for you to not leave sats in the custodial accounts that you are not comfortable leaving as a donation to the project. The portal does not verify your email address, but if you leave a real address, we can contact you in the event the accounts are reset.</p>
         </div>
     </div>
     </div>
@@ -74,7 +127,13 @@ Moneysocket Wallet and Chat Tutorial
     <div class="text-center font-bold py-2">Step 2 - Account and Beacon</div>
     <div class="flex flex-row justify-center">
         <div class="flex flex-col">
-            <p class="text-center px-4 py-4"> When you are logged in to the account, </p>
+            <p class="text-center px-4 py-4"> Once you are logged in to the account, you will see a greeting screen that is mostly blank, but with a <b>New Account</b> button. You can create up to five accounts with the portal, but you will only need one:</p>
+            <img class="px-4 py-4" src="img/new-account1.png">
+            <p class="text-center px-4 py-4"> This account starts with zero sats, which you will have to deposit later. It also has a cap, since we do not desire to hold significant sums of Bitcoin for you.</p>
+            <p class="text-center px-4 py-4"> You will need to press the <b>Generate Beacon</b> button to generate a <a class="text-green-600" href="https://socket.money/beacon">beacon string</a>. The information in the string is the means by which the wallet connects to this account.</p>
+            <img class="px-4 py-4" src="img/new-account2.png">
+            <p class="text-center px-4 py-4"> The string can be copy-pasted or rendered into a QR Code by pressing the button to make it easy to scan with a phone.</p>
+
 
         </div>
     </div>
@@ -84,12 +143,141 @@ Moneysocket Wallet and Chat Tutorial
 <!-- end row box 2 -->
 </div>
 
+<!-- box 3 -->
+<div class="flex flex-row justify-center pb-10">
+<div class="flex flex-col w-3/4">
+    <div class="bg-green-200 py-1 rounded">
+    <div class="text-center font-bold py-2">Step 3 - Wallet</div>
+    <div class="flex flex-row justify-center">
+        <div class="flex flex-col">
+            <p class="text-center px-4 py-4"> The project provides a wallet application that uses Moneysocket, named <a class="font-bold text-green-600" href="https://socket.money/wallet">Costanza Wallet</a> that is meant to be a prototype for future wallet-like apps that take advantage of the protocol. It needs no installation and simply runs in your web browser. It works great in a smartphone browser as well.</p>
+            <p class="text-center px-4 py-4"> To run, you simply point your browser at the URL: <a class="font-bold text-green-800" href="https://socket.money/wallet">socket.money/wallet</a> </p>
+            <p class="text-center px-4 py-4"> It stores the information it needs to store in the browser's local storage, so when it comes back, it can remember your data which do not leave your computer. You should see a screen that looks like this:</p>
+            <img class="px-4 py-4" src="img/wallet1.png">
+            <p class="text-center px-4 py-4"> You will need to press the <b>Connect Wallet Provider</b> button at the top to open the dialog for setting up a provider connection: </p>
+            <img class="px-4 py-4" src="img/wallet2.png">
+            <p class="text-center px-4 py-4"> This is where you can paste or scan the QR of the beacon string generated in step 2 above. When you do, you should see it establishing a connection to the provider, but then automatically return to the home screen with the zero satoshi balance of the account: </p>
+            <img class="px-4 py-4" src="img/wallet3.png">
+        </div>
+    </div>
+    </div>
+<!-- end column box 3 -->
+</div>
+<!-- end row box 3 -->
+</div>
+
+<!-- box 4 -->
+<div class="flex flex-row justify-center pb-10">
+<div class="flex flex-col w-3/4">
+    <div class="bg-green-200 py-1 rounded">
+    <div class="text-center font-bold py-2">Step 4 - Get Some Satoshis</div>
+    <div class="flex flex-row justify-center">
+        <div class="flex flex-col">
+            <p class="text-center px-4 py-4"> The wallet is built for sending and receiving satoshis via socket connections to an application, however it allows you to send and receive manually like other Lightning Network wallets too. If you click on the zero satoshi balance on the main screen, you will be given those options. </p>
+            <img class="px-4 py-4" src="img/wallet4.png">
+            <p class="text-center px-4 py-4"> The <b>Manual Receive</b> button will take you to a screen where you can request a bolt11 invoice of a chosen amount of satoshis. For this tutorial, just a small amount of satoshis is sufficient.</p>
+            <img class="px-4 py-4" src="img/wallet5.png">
+            <p class="text-center px-4 py-4"> Upon requesting the invoice, a QR code will display the bolt11 and also give you the option to copy the bolt11. Paying the bolt11 will result in the balance appearing on the main screen.</p>
+            <img class="px-4 py-4" src="img/wallet6.png">
+            <p class="text-center px-4 py-4"> We are now ready to create a socket connection to an app.</p>
+        </div>
+    </div>
+    </div>
+<!-- end column box 4 -->
+</div>
+<!-- end row box 4 -->
+</div>
+
+<!-- box 5 -->
+<div class="flex flex-row justify-center pb-10">
+<div class="flex flex-col w-3/4">
+    <div class="bg-green-200 py-1 rounded">
+    <div class="text-center font-bold py-2">Step 5 - Moneysocket Chat</div>
+    <div class="flex flex-row justify-center">
+        <div class="flex flex-col">
+            <p class="text-center px-4 py-4"> The Moneysocket chat app can be accessed at <a class="font-bold text-green-800" href="https://socket.money/chat">socket.money/chat</a> </p>
+            <img class="px-4 py-4" src="img/chat1.png">
+            <p class="text-center px-4 py-4"> In this app, each chat message costs 1 satoshi. However, this would be awkward to pay with 'normal' Lightning Network wallets, since each payment requires manual actions. With Moneysocket, we can automate the payment and proceed to chat the way we expect in chat apps.</p>
+            <p class="text-center px-4 py-4"> On the side panel, click the <b>Generate New Beacon</b> button to start the connection process. It will display a QR code, but pause at the "Waiting For Rendezvous" stage. </p>
+            <img class="px-4 py-4" src="img/chat2.png">
+            <p class="text-center px-4 py-4"> We must copy or scan this beacon value into the wallet to make a connection. On the wallet, click the <b>App</b> button in the top-left corner.</p>
+            <img class="px-4 py-4" src="img/wallet7.png">
+            <p class="text-center px-4 py-4"> Either scan in or paste in the beacon value from the chat app. When the connection completes, the chat app should show a balance of <b>0.000 sats</b></p>
+            <p class="text-center px-4 py-4"> The wallet should present the authorization dialog. We need to authorize a balance to be spendable through the connection. This prevents exposing your entire wallet balance to the app.</p>
+            <img class="px-4 py-4" src="img/wallet8.png">
+            <p class="text-center px-4 py-4"> Select <b>50%</b> and then press the <b>Set</b> button to authorize half of the available wallet balance.</p>
+            <img class="px-4 py-4" src="img/wallet9.png">
+            <p class="text-center px-4 py-4"> This balance will appear on the chat app.</p>
+        </div>
+    </div>
+    </div>
+<!-- end column box 5 -->
+</div>
+<!-- end row box 5 -->
+</div>
+
+<!-- box 6 -->
+<div class="flex flex-row justify-center pb-10">
+<div class="flex flex-col w-3/4">
+    <div class="bg-green-200 py-1 rounded">
+    <div class="text-center font-bold py-2">Step 6 - Chatting </div>
+    <div class="flex flex-row justify-center">
+        <div class="flex flex-col">
+            <p class="text-center px-4 py-4"> Now that we are connected, we can type messages into the chat box and see the invoices paid automatically and the satoshis deducted.</p>
+            <img class="px-4 py-4" src="img/chat3.png">
+            <p class="text-center px-4 py-4"> Likewise, you can see these actions automatically update on the wallet interface.</p>
+            <img class="px-4 py-4" src="img/wallet10.png">
+        </div>
+    </div>
+    </div>
+<!-- end column box 6 -->
+</div>
+<!-- end row box 6 -->
+</div>
+
 
 <!-- end column -->
 </div>
 <!-- end row -->
 </div>
 
-</body>
+<div class="pt-5">
+<div style="background-color:#159245" class="flex flex-row items-center justify-center py-2">
+    <a class="px-1" target="_blank" href="https://github.com/moneysocket/awesome-moneysocket">
+        <img class="drop-shadow" style="max-width:3.5rem;max-height:3.5rem" alt="everything" src="/img/awesomeface.png">
+        <div class="text-xs text-white drop-shadow w-14">Everything</div>
+    </a>
+    <a class="px-1" target="_blank" href="https://socket.money/chat">
+        <img class="drop-shadow" style="max-width:3.5rem;max-height:3.5rem" alt="chat" src="/img/eye_200.png">
+        <div class="text-xs text-white drop-shadow w-14">Chat</div>
+    </a>
+    <a class="px-1" target="_blank" href="https://socket.money/wallet">
+        <img class="drop-shadow" style="max-width:3.5rem;max-height:3.5rem" alt="wallet" src="/img/wallet-brown_200.png">
+        <div class="text-xs text-white drop-shadow w-14">Wallet</div>
+    </a>
+    <a class="px-1" target="_blank" href="https://custodial.socket.money">
+        <img class="drop-shadow" style="max-width:3.5rem;max-height:3.5rem" alt="custodial" src="/img/custodial_200.png">
+        <div class="text-xs text-white drop-shadow w-14">Custodial</div>
+    </a>
+    <a class="px-1" target="_blank" href="https://socket.money/codec">
+        <img class="drop-shadow" style="max-width:3.5rem;max-height:3.5rem" alt="Beacon" src="/img/beacon_200.png">
+        <div class="text-xs text-white drop-shadow w-14">Beacon</div>
+    </a>
+    <a class="px-1" target="_blank" href="https://t.me/moneysocket">
+        <img class="drop-shadow" style="max-width:3.5rem;max-height:3.5rem" alt="telegram" src="/img/telegram_200.png">
+        <div class="text-xs text-white drop-shadow w-14">Telegram</div>
+    </a>
+    <a class="px-1" target="_blank" href="https://twitter.com/moneysocket">
+        <img class="drop-shadow" style="max-width:3.5rem;max-height:3.5rem" alt="twitter" src="/img/twitter_200.png">
+        <div class="text-xs text-white drop-shadow w-14">Twitter</div>
+    </a>
+    <a class="px-1" href="#donate">
+        <img class="drop-shadow" style="max-width:3.5rem;max-height:3.5rem" alt="donate" src="/img/Bitcoin_logo-circle.png">
+        <div class="text-xs text-white drop-shadow w-14">Donate</div>
+    </a>
+</div>
+</div>
 
+</center>
+</body>
 </html>
