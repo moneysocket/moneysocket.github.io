@@ -78,11 +78,11 @@ Moneysocket Tutorial
 <div class="flex flex-row justify-center pb-10">
 <div class="flex flex-col w-3/4">
 <div class="bg-green-200 py-1 rounded">
-<div class="text-center font-bold py-2">The Goal:</div>
+<div class="text-center font-bold text-xl py-2">The Goal:</div>
 
 <div class="flex flex-row justify-center">
         <div class="flex flex-col">
-            <p class="text-center py-4 px-4"> This tutorial will demonstrate Moneysocket through hands-on experience using applications built upon the protocol libraries. This includes the <a class="text-blue-900" target="_blank"  href="https://socket.money/chat"><b>Moneysocket Chat App</b></a>, the <a class="text-blue-900" target="_blank" href="https://socket.money/wallet"><b>Costanza Wallet</b></a> and the <a class="text-blue-900" target="_blank" href="https://custodial.socket.money"><b>Custodial Provider Portal</b></a>. By following these steps, you should gain knowledge of how these pieces interoperate through the protocol and should hopefully stoke your imagination for what kinds of apps could be developed in this ecosystem.</p>
+            <p class="text-center py-4 px-4"> This tutorial will demonstrate Moneysocket through hands-on experience using applications built upon the protocol libraries. This includes the <a class="text-blue-900" target="_blank"  href="https://socket.money/chat"><b>Moneysocket Chat App</b></a>, the <a class="text-blue-900" target="_blank" href="https://socket.money/wallet"><b>Costanza Wallet</b></a> and the <a class="text-blue-900" target="_blank" href="https://custodial.socket.money"><b>Custodial Provider Portal</b></a>. By following these steps, you should gain knowledge of how these pieces interoperate through the protocol and should hopefully stoke your imagination for what kinds of apps could be developed in the Moneysocket ecosystem.</p>
             <p class="text-center px-4"> Moneysocket Chat: </p>
             <img class="px-4 py-4 w-auto" height="200" src="img/chat.png">
             <p class="text-center px-4"> Costanza Wallet: </p>
@@ -100,18 +100,18 @@ Moneysocket Tutorial
 <div class="flex flex-row justify-center pb-10">
 <div class="flex flex-col w-3/4">
     <div class="bg-green-200 py-1 rounded">
-    <div class="text-center font-bold py-2">Step 1 - A Place For Money </div>
+    <div class="text-center font-bold text-xl py-2">Step 1 - A Place For Money </div>
     <div class="flex flex-row justify-center">
         <div class="flex flex-col">
             <p class="text-center px-4 py-4"> Moneysocket works on an account model for holding an balance assigned authorized to a socket connection. This account with the ability to transact on the Lightning Network must be provided at the "Terminus".</p>
             <p class="text-center px-4 py-4">
             For advanced users that wants to self-custody, you can run the <a class="text-blue-900" href="https://github.com/moneysocket/terminus">Terminus</a> application with your Lightning Network node. However, this tutorial is to show you a quicker path using a custodial account.
             </p>
-            <p class="text-center px-4 py-4"> You will only need to deposit a few satoshis to start learning about Moneysocket. Go to the <a class="text-blue-900" target="_blank" href="https://custodial.socket.money">Custodial Portal</a> and register:
+            <p class="text-center px-4 py-4"> Go to the <a class="text-blue-900" target="_blank" href="https://custodial.socket.money">Custodial Portal</a> and register:
             </p>
             <img class="px-4 py-4" src="img/register1.png">
             <img class="px-4 py-4" src="img/register2.png">
-            <p class="text-center px-4 py-4"> Please note the warning for you to not leave sats in the custodial accounts that you are not comfortable leaving as a donation to the project. The portal does not verify your email address, but if you leave a real address, we can contact you in the event the accounts are reset.</p>
+            <p class="text-center px-4 py-4"> Please acknowledge the warning for you to not leave satoshis in the custodial accounts that you are not comfortable leaving as a donation to the project. The portal does not verify your email address, but if you leave a real address, we can contact you in the event the accounts are reset.</p>
         </div>
     </div>
     </div>
@@ -124,13 +124,13 @@ Moneysocket Tutorial
 <div class="flex flex-row justify-center pb-10">
 <div class="flex flex-col w-3/4">
     <div class="bg-green-200 py-1 rounded">
-    <div class="text-center font-bold py-2">Step 2 - Account and Beacon</div>
+    <div class="text-center font-bold text-xl py-2">Step 2 - Account and Beacon</div>
     <div class="flex flex-row justify-center">
         <div class="flex flex-col">
             <p class="text-center px-4 py-4"> Once you are logged in to the account, you will see a greeting screen that is mostly blank, but with a <b>New Account</b> button. You can create up to five accounts with the portal, but you will only need one:</p>
             <img class="px-4 py-4" src="img/new-account1.png">
-            <p class="text-center px-4 py-4"> This account starts with zero sats, which you will have to deposit later. It also has a cap, since we do not desire to hold significant sums of Bitcoin for you.</p>
-            <p class="text-center px-4 py-4"> You will need to press the <b>Generate Beacon</b> button to generate a <a class="text-green-600" href="https://socket.money/beacon">beacon string</a>. The information in the string is the means by which the wallet connects to this account.</p>
+            <p class="text-center px-4 py-4"> This account starts with zero satoshis, which you will have to deposit later. It also has a cap, since we do not desire to hold significant sums of Bitcoin for you.</p>
+            <p class="text-center px-4 py-4"> You will need to press the <b>Generate Beacon</b> button to generate a <a class="text-green-600" href="https://socket.money/beacon">beacon string</a>. You can generate up to three beacons per account, but you will only need one. The information in the string is the means by which the wallet connects to this account.</p>
             <img class="px-4 py-4" src="img/new-account2.png">
             <p class="text-center px-4 py-4"> The string can be copy-pasted or rendered into a QR Code by pressing the button to make it easy to scan with a phone.</p>
 
@@ -147,7 +147,7 @@ Moneysocket Tutorial
 <div class="flex flex-row justify-center pb-10">
 <div class="flex flex-col w-3/4">
     <div class="bg-green-200 py-1 rounded">
-    <div class="text-center font-bold py-2">Step 3 - Wallet</div>
+    <div class="text-center font-bold text-xl py-2">Step 3 - Wallet</div>
     <div class="flex flex-row justify-center">
         <div class="flex flex-col">
             <p class="text-center px-4 py-4"> The project provides a wallet application that uses Moneysocket, named <a class="font-bold text-green-600" href="https://socket.money/wallet">Costanza Wallet</a> that is meant to be a prototype for future wallet-like apps that take advantage of the protocol. It needs no installation and simply runs in your web browser. It works great in a smartphone browser as well.</p>
@@ -170,10 +170,11 @@ Moneysocket Tutorial
 <div class="flex flex-row justify-center pb-10">
 <div class="flex flex-col w-3/4">
     <div class="bg-green-200 py-1 rounded">
-    <div class="text-center font-bold py-2">Step 4 - Get Some Satoshis</div>
+    <div class="text-center font-bold text-xl py-2">Step 4 - Get Some Satoshis</div>
     <div class="flex flex-row justify-center">
         <div class="flex flex-col">
-            <p class="text-center px-4 py-4"> The wallet is built for sending and receiving satoshis via socket connections to an application, however it allows you to send and receive manually like other Lightning Network wallets too. If you click on the zero satoshi balance on the main screen, you will be given those options. </p>
+            <p class="text-center px-4 py-4"> The wallet is built for sending and receiving satoshis via socket connections to an application, however it allows you to send and receive manually like other Lightning Network wallets too. </p>
+            <p class="text-center px-4 py-4"> If you click on the zero satoshi balance on the main screen, you will be given those options. </p>
             <img class="px-4 py-4" src="img/wallet4.png">
             <p class="text-center px-4 py-4"> The <b>Manual Receive</b> button will take you to a screen where you can request a bolt11 invoice of a chosen amount of satoshis. For this tutorial, just a small amount of satoshis is sufficient.</p>
             <img class="px-4 py-4" src="img/wallet5.png">
@@ -192,22 +193,22 @@ Moneysocket Tutorial
 <div class="flex flex-row justify-center pb-10">
 <div class="flex flex-col w-3/4">
     <div class="bg-green-200 py-1 rounded">
-    <div class="text-center font-bold py-2">Step 5 - Moneysocket Chat</div>
+    <div class="text-center font-bold text-xl py-2">Step 5 - Moneysocket Chat</div>
     <div class="flex flex-row justify-center">
         <div class="flex flex-col">
             <p class="text-center px-4 py-4"> The Moneysocket chat app can be accessed at <a class="font-bold text-green-800" href="https://socket.money/chat">socket.money/chat</a> </p>
             <img class="px-4 py-4" src="img/chat1.png">
-            <p class="text-center px-4 py-4"> In this app, each chat message costs 1 satoshi. However, this would be awkward to pay with 'normal' Lightning Network wallets, since each payment requires manual actions. With Moneysocket, we can automate the payment and proceed to chat the way we expect in chat apps.</p>
-            <p class="text-center px-4 py-4"> On the side panel, click the <b>Generate New Beacon</b> button to start the connection process. It will display a QR code, but pause at the "Waiting For Rendezvous" stage. </p>
+            <p class="text-center px-4 py-4"> In this chat app, each chat message costs 1 satoshi. However, this would be awkward to pay with conventional Lightning Network wallets, since each payment requires manual actions. With Moneysocket, we can automate the payment and proceed to chat the way we expect in chat apps.</p>
+            <p class="text-center px-4 py-4"> On the side panel of the chat app, click the <b>Generate New Beacon</b> button to start the connection process. It will display a QR code, but pause at the "Waiting For Rendezvous" stage. </p>
             <img class="px-4 py-4" src="img/chat2.png">
             <p class="text-center px-4 py-4"> We must copy or scan this beacon value into the wallet to make a connection. On the wallet, click the <b>App</b> button in the top-left corner.</p>
             <img class="px-4 py-4" src="img/wallet7.png">
             <p class="text-center px-4 py-4"> Either scan in or paste in the beacon value from the chat app. When the connection completes, the chat app should show a balance of <b>0.000 sats</b></p>
-            <p class="text-center px-4 py-4"> The wallet should present the authorization dialog. We need to authorize a balance to be spendable through the connection. This prevents exposing your entire wallet balance to the app.</p>
+            <p class="text-center px-4 py-4"> The wallet should present the authorization dialog. We need to authorize a balance to be spendable through the connection. This prevents exposing your entire wallet balance.</p>
             <img class="px-4 py-4" src="img/wallet8.png">
             <p class="text-center px-4 py-4"> Select <b>50%</b> and then press the <b>Set</b> button to authorize half of the available wallet balance.</p>
             <img class="px-4 py-4" src="img/wallet9.png">
-            <p class="text-center px-4 py-4"> This balance will appear on the chat app.</p>
+            <p class="text-center px-4 py-4"> This authorized balance will also appear on the chat app on the side panel.</p>
         </div>
     </div>
     </div>
@@ -220,7 +221,7 @@ Moneysocket Tutorial
 <div class="flex flex-row justify-center pb-10">
 <div class="flex flex-col w-3/4">
     <div class="bg-green-200 py-1 rounded">
-    <div class="text-center font-bold py-2">Step 6 - Chatting </div>
+    <div class="text-center font-bold text-xl py-2">Step 6 - Chatting </div>
     <div class="flex flex-row justify-center">
         <div class="flex flex-col">
             <p class="text-center px-4 py-4"> Now that we are connected, we can type messages into the chat box and see the invoices paid automatically and the satoshis deducted.</p>
@@ -233,6 +234,24 @@ Moneysocket Tutorial
 <!-- end column box 6 -->
 </div>
 <!-- end row box 6 -->
+</div>
+
+<!-- box 7 -->
+<div class="flex flex-row justify-center pb-10">
+<div class="flex flex-col w-3/4">
+    <div class="bg-green-200 py-1 rounded">
+    <div class="text-center font-bold text-xl py-2"> Recap </div>
+    <div class="flex flex-row justify-center">
+        <div class="flex flex-col">
+            <p class="text-center px-4 py-4"> By setting up the socket connection, we have enabled the chat application to drive payments. The <b>Enter</b> press to send a chat message also sends a payment. This is done without a browser plugin and isn't limited to applications that use a web browser (though that's the easiest way to deploy software). The permission over access to the user's funds are enforced by the user's wallet application. </p>
+            <p class="text-center px-4 py-4"> The beacon string provided a simple way of connecting two different applications together for the purposes of these payments. This tutorial had you manually setting up the connection by transferring the beacon, however it can easily be imagined how the beacon can be we membered by applications for automatic setup the next time the user returns to the application.</p>
+            <p class="text-center px-4 py-4"> Thanks for following this tutorial. IF you have any questions or comments, please join us in our <a class="font-bold text-green-900" href="https://t.me/moneysocket">Telegram group</a>.</p>
+        </div>
+    </div>
+    </div>
+<!-- end column box 7 -->
+</div>
+<!-- end row box 7 -->
 </div>
 
 
