@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<!-- Copyright (c) 2020 Jarret Dyrbye
+Distributed under the MIT software license, see the accompanying
+file LICENSE or http://www.opensource.org/licenses/mit-license.php -->
+<html>
+<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+<meta content="utf-8" http-equiv="encoding">
+<head>
+
+<link href="css/tailwind.min.css" rel="stylesheet">
+
+<style>
+    @import url("https://fonts.googleapis.com/css?family=Poppins&display=swap");
+    body {
+      font-family: Poppins;
+    }
+</style>
+<style>
+    .container {
+      width: 98%;
+      margin: auto;
+      padding: 5px;
+    }
+    .bordered {
+        border: 2px solid blue ;
+        text-align: center;
+        box-sizing: border-box;
+        float:left;
+        padding: 5px;
+        width: 98%;
+    }
+    .left {
+        border: 1px solid blue ;
+        width: 48%;
+        text-align: center;
+        float: left;
+        padding: 5px;
+    }
+    .right {
+        border: 1px solid blue ;
+        width: 48%;
+        text-align: center;
+        float: right;
+        padding: 5px;
+    }
+    .center {
+        border: 1px solid blue ;
+        width: 60%;
+        text-align: center;
+        float: center;
+        padding: 5px;
+    }
+    .balance {
+        font-size: 200%;
+    }
+
+
+    textarea.nice {
+        width: 80%;
+        min-height: 100px;
+        padding-top: 5px;
+        padding-right: 5px;
+        padding-bottom: 5px;
+        padding-left: 5px;
+    }
+
+    div {
+    }
+    form {
+    }
+</style>
+</head>
+<body>
+<center>
+
+<div style="background-color:#159245" class="flex flex-wrap items-center justify-start py-2">
+    <a href="https://socket.money">
+        <div class="flex flex-row items-center justify-start pl-2">
+            <img class="px-2 py-2 drop-shadow" style="max-width:71px;min-width:71px;" src="img/moneysocket-trans.png">
+            <div class="font-bold text-2xl text-white drop-shadow">moneysocket</div>
+        </div>
+    </a>
+    <div class="flex-grow"></div>
+    <div class="flex flex-wrap justify-center">
+    <a class="px-1" target="_blank" href="https://github.com/moneysocket/awesome-moneysocket">
+        <img class="drop-shadow" style="max-width:3.5rem;max-height:3.5rem" alt="code" src="img/awesomeface.png">
+        <div class="text-xs text-white drop-shadow w-14">Code</div>
+    </a>
+    <a class="px-1" target="_blank" href="https://socket.money/chat">
+        <img class="drop-shadow" style="max-width:3.5rem;max-height:3.5rem" alt="chat" src="img/eye_200.png">
+        <div class="text-xs text-white drop-shadow w-14">Chat</div>
+    </a>
+    <a class="px-1" target="_blank" href="https://socket.money/wallet">
+        <img class="drop-shadow" style="max-width:3.5rem;max-height:3.5rem" alt="wallet" src="img/wallet-brown_200.png">
+        <div class="text-xs text-white drop-shadow w-14">Wallet</div>
+    </a>
+    <a class="px-1" target="_blank" href="https://custodial.socket.money">
+        <img class="drop-shadow" style="max-width:3.5rem;max-height:3.5rem" alt="custodial" src="img/custodial_200.png">
+        <div class="text-xs text-white drop-shadow w-14">Custodial</div>
+    </a>
+    <a class="px-1" target="_blank" href="https://socket.money/beacon">
+        <img class="drop-shadow" style="max-width:3.5rem;max-height:3.5rem" alt="Beacon" src="img/beacon_200.png">
+        <div class="text-xs text-white drop-shadow w-14">Beacon</div>
+    </a>
+    <a class="px-1" target="_blank" href="https://t.me/moneysocket">
+        <img class="drop-shadow" style="max-width:3.5rem;max-height:3.5rem" alt="telegram" src="img/telegram_200.png">
+        <div class="text-xs text-white drop-shadow w-14">Telegram</div>
+    </a>
+    <a class="px-1" target="_blank" href="https://twitter.com/moneysocket">
+        <img class="drop-shadow" style="max-width:3.5rem;max-height:3.5rem" alt="twitter" src="img/twitter_200.png">
+        <div class="text-xs text-white drop-shadow w-14">Twitter</div>
+    </a>
+    <a class="px-1" href="#donate">
+        <img class="drop-shadow" style="max-width:3.5rem;max-height:3.5rem" alt="donate" src="img/Bitcoin_logo-circle.png">
+        <div class="text-xs text-white drop-shadow w-14">Donate</div>
+    </a>
+    </div>
+</div>
+
+
+<div class="flex flex-row justify-center">
+<div class="flex flex-col w-5/6 max-w-3xl">
+
+
+<div class="pt-5">
+<div style="background-color:#159245" class="flex flex-col items-center rounded-md max-w-screen-lx">
+    <div class="text-white py-4"><span class="text-4xl font-bold">Moneysocket Beacons</span></div>
+</div>
+</div>
+
+
+<div class="pt-5">
+<div style="background-color:#159245" class="flex flex-col items-center rounded-md max-w-screen-md">
+    <div class="text-white py-4"><span class="text-2xl font-bold">Explain It Like I'm 5</span></div>
+            <p class="text-white text-center py-4 px-4"> A Moneysocket "beacon" is a string of data that looks like this: </p>
+    <p class="text-white text-center text-xl font-bold py-4 px-4 break-all"> moneysocket1lcqqzqdm8hlqqqgph5gwpkvy0epv3elllvnq7ts870p8llsqqyquzg07qqqsr0cpq8lqqqgpcv2qqynjv4kxz7fwwdhkx6m9wshx6mmwv4usrcpum3 </p>
+            <p class="text-white text-center py-4 px-4"> It contains information for two devices or programs to find each other and open a communication channel.</p>
+            <p class="text-white text-center py-4 px-4"> It also contains secret information so that the two devices or programs can communicate in secret. </p>
+</div>
+</div>
+
+
+<div class="pt-5">
+<div style="background-color:#159245" class="flex flex-col items-center rounded-md max-w-screen-md">
+    <div class="text-white py-4"><span class="text-2xl font-bold">Encode A Beacon</span></div>
+    <div class="flex flex-col">
+        <div class="text-white"> Shared Seed: </div>
+
+        <div class="flex justify-between">
+        <input class="px-2 py-1" type="text" id="shared-seed" placeholder="seed" size="20" maxlength=20>
+        <div class="px-1 py-1">
+            <button class="border border-black rounded px-2 py-1 bg-green-200 hover:bg-green-400" id="new-shared-seed">New Seed</button>
+        </div>
+        </div>
+
+        <div class="flex flex-row justify-center items-center pt-3">
+            <div class="text-white">Use TLS:</div>
+            <div class="text-white text-3xl px-5" id="tls">True</div>
+            <button class="border border-black rounded px-2 py-1 bg-green-200 hover:bg-green-400" id="toggle-tls">Toggle</button>
+        </div>
+
+
+        <div class="flex flex-row justify-center items-center pt-3">
+            <div class="text-white px-2"> Host: </div>
+            <input class="px-2 py-1" type="text" id="host" placeholder="host" size="10" maxlength=40>
+        </div>
+
+        <div class="flex flex-row justify-center items-center pt-3">
+            <div class="text-white px-2"> Port: </div>
+            <input class="px-2 py-1" type="text" id="port" placeholder="port" size="5" maxlength=10>
+        </div>
+
+        <div class="flex flex-row justify-center items-center pt-6">
+            <button class="border border-black rounded px-2 py-1 bg-green-200 hover:bg-green-400" id="encode">Encode</button>
+        </div>
+
+        <div class="flex flex-row justify-center items-center py-6">
+            <div class="pr-4" id="encoded-qr-code"></div>
+            <textarea id="encoded-text" readonly="" class="w-2/3 h-40"></textarea>
+        </div>
+
+    </div>
+
+</div>
+</div>
+
+<div class="pt-5">
+<div style="background-color:#159245" class="flex flex-col items-center rounded-md max-w-screen-md">
+    <div class="text-white py-4"><span class="text-2xl font-bold">Decode A Beacon</span></div>
+    <div class="flex flex-col">
+        <div class="text-white"> Paste Beacon: </div>
+        <div class="flex flex-row justify-center items-center pt-6">
+            <textarea id="input-beacon" class="h-40"></textarea>
+        </div>
+        <div class="flex flex-row justify-center items-center pt-6">
+            <button class="border border-black rounded px-2 py-1 bg-green-200 hover:bg-green-400" id="decode">Decode</button>
+        </div>
+        <div class="flex flex-row justify-center items-center py-6">
+            <textarea id="output-beacon" readonly="" class="h-40"></textarea>
+        </div>
+    </div>
+</div>
+</div>
+
+<div class="pt-5">
+<div style="background-color:#159245" class="flex flex-col items-center rounded-md max-w-screen-md">
+    <div class="text-white py-4"><span class="text-2xl font-bold">Explain It Like I'm 20</span></div>
+            <p class="text-white text-center py-4 px-4"> A Moneysocket "beacon" encodes a rendezvous location at a websocket relay server (eg. <b>wss://relay.socket.money</b>). If two devices or programs make an outgoing websocket connection to a relay, they can find eachother if they provide a matching Rendezvous ID values to the relay. This value is derived from a value shared in the beacon string</p>
+            <p class="text-white text-center py-4 px-4"> Additionally, it can point directly to a Moneysocket-enabled websocket server without using a relay. However, that requires that the users ensure that the specificed network location is reachable (wheras relays such as <b>wss://relay.socket.money</b> are available on the open internet). </p>
+            <p class="text-white text-center py-4 px-4"> The end result is an easy way to "pair" to applications or devices for socket connection. The string is bech32-encoded which optimizes for both manual copy-pasting and also efficiently displaying in a QR code.</p>
+</div>
+</div>
+
+
+<div class="pt-5">
+<div style="background-color:#159245" class="flex flex-col items-center rounded-md max-w-screen-md">
+    <div class="text-white py-4"><span class="text-2xl font-bold">Source Code</span></div>
+            <p class="text-white text-center py-4 px-4"> This page which uses the <a class="font-bold text-green-900" href="https://github.com/moneysocket/js-moneysocket">js-moneysocket</a> library to encode and decode the beacons is available <a class="font-bold text-green-900" href="https://github.com/moneysocket/beacon-codec">here</a>.</p>
+            <p class="text-white text-center py-4 px-4"> The relay that peforms the rendezvous between two connections and forwards messages is available <a class="font-bold text-green-900" href="https://github.com/moneysocket/relay">here</a>.</p>
+</div>
+</div>
+
+<div class="pt-5">
+<div style="background-color:#159245" class="flex flex-col items-center rounded-md max-w-screen-md">
+    <div class="text-white py-4"><span class="text-2xl font-bold">Appendix A: Shared Seed</span></div>
+            <p class="text-white text-center py-4 px-4"> The Beacon contains a 128-bit shared seed value that is randomly generated. This ennsures that anyone connecting to the rendezvous location has observed the shared seed value. It also is the basis for the end-to-end encryption of protocol messages after the link has been established</p>
+            <p class="text-white text-center py-4 px-4"> During an initial handshake of a connection, a 256-bit Rendezvous ID is provided. This is the quadruple-SHA256 derivation of the Shared Seed value. At the relay, two connections that provide the same Rendezvous ID are paired together and subsequent messages are forwarded to eachother.</p>
+            <p class="text-white text-center py-4 px-4"> After that establishment of the connection, the connection between the two clients proceeds encrypted. The double-SHA256 derivation of the Shared Seed value is used as the AES256 key. This defication scheme of the AES256 key and Rendezvous ID coming from the Shared Seed ensures that the relay cannot know the key and makes this an end-to-end encrypted link.</p>
+</div>
+</div>
+
+<div class="pt-5">
+<div style="background-color:#159245" class="flex flex-col items-center rounded-md max-w-screen-md">
+    <div class="text-white py-4"><span class="text-2xl font-bold">Appendix B: Other Sockets</span></div>
+            <p class="text-white text-center py-4 px-4"> To limit the scope while under development, websockets are the initial means by which Moneysocket connections are made. However there are some downsides to websockets, such as relying on the relay. In the long run, there is no reasy why Moneysocket can't use other interconnect protocols since all that is needed is the full-duplex socket primitive</p>
+            <p class="text-white text-center py-4 px-4"> Standards like WebRTC and Bluetooth work as better peer-to-peer technologies depending on the particular setup. Also, Near-field Communication and OS domain sockets might make sense in the future.</p>
+            <p class="text-white text-center py-4 px-4"> The limiting factor in rolling these things out are development resources that would allow us to prioritize their inclusion. If you are interested in contributing to this open-source protocol in that way, please drop in our <a class="font-bold text-green-900" href="https://t.me/moneysocket">Telegram group</a> and say hello. </p>
+</div>
+</div>
+
+
+
+<!-- end column -->
+</div>
+<!-- end row -->
+</div>
+
+<div class="flex flex-col">
+    <div id="ui"></div>
+</div>
+
+
+<div class="pt-5">
+<div style="background-color:#159245" class="flex flex-row items-center justify-center py-2">
+    <a class="px-1" target="_blank" href="https://github.com/moneysocket/awesome-moneysocket">
+        <img class="drop-shadow" style="max-width:3.5rem;max-height:3.5rem" alt="code" src="img/awesomeface.png">
+        <div class="text-xs text-white drop-shadow w-14">Code</div>
+    </a>
+    <a class="px-1" target="_blank" href="https://socket.money/chat">
+        <img class="drop-shadow" style="max-width:3.5rem;max-height:3.5rem" alt="chat" src="img/eye_200.png">
+        <div class="text-xs text-white drop-shadow w-14">Chat</div>
+    </a>
+    <a class="px-1" target="_blank" href="https://socket.money/wallet">
+        <img class="drop-shadow" style="max-width:3.5rem;max-height:3.5rem" alt="wallet" src="img/wallet-brown_200.png">
+        <div class="text-xs text-white drop-shadow w-14">Wallet</div>
+    </a>
+    <a class="px-1" target="_blank" href="https://custodial.socket.money">
+        <img class="drop-shadow" style="max-width:3.5rem;max-height:3.5rem" alt="custodial" src="img/custodial_200.png">
+        <div class="text-xs text-white drop-shadow w-14">Custodial</div>
+    </a>
+    <a class="px-1" target="_blank" href="https://socket.money/beacon">
+        <img class="drop-shadow" style="max-width:3.5rem;max-height:3.5rem" alt="Beacon" src="img/beacon_200.png">
+        <div class="text-xs text-white drop-shadow w-14">Beacon</div>
+    </a>
+    <a class="px-1" target="_blank" href="https://t.me/moneysocket">
+        <img class="drop-shadow" style="max-width:3.5rem;max-height:3.5rem" alt="telegram" src="img/telegram_200.png">
+        <div class="text-xs text-white drop-shadow w-14">Telegram</div>
+    </a>
+    <a class="px-1" target="_blank" href="https://twitter.com/moneysocket">
+        <img class="drop-shadow" style="max-width:3.5rem;max-height:3.5rem" alt="twitter" src="img/twitter_200.png">
+        <div class="text-xs text-white drop-shadow w-14">Twitter</div>
+    </a>
+    <a class="px-1" href="#donate">
+        <img class="drop-shadow" style="max-width:3.5rem;max-height:3.5rem" alt="donate" src="img/Bitcoin_logo-circle.png">
+        <div class="text-xs text-white drop-shadow w-14">Donate</div>
+    </a>
+</div>
+</div>
+
+</center>
+</body>
+
+<script type="module" src="js/codec.js"></script>
+</html>
